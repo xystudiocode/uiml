@@ -1,3 +1,3 @@
-# 目录
+# Table of Contents
 
-请在左侧侧边栏中选择要查看的章节。
+Please select the chapter you want to view from the left sidebar.

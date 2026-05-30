@@ -1,37 +1,37 @@
-# 自定义
+# Customization
 
-## 描述
-在 `uiml` 中，你可以通过定义自定义来修改其解析逻辑，可以添加新的替换逻辑等。
+## Description
+In `uiml`, you can modify its parsing logic by defining customizations, and you can add new replacement logic, etc.
 
-## 自定义参数
-目前默认的自定义参数：
-- `value_replace_func`：控制值的自动变换逻辑，默认不替换。
-- `layout_parser_func`: 控制在`compile_ui`时候，解析布局的逻辑。
-- `widget_parser_func`: 控制在`compile_ui`时候，解析组件的逻辑。
+## Custom Parameters
+Currently, the default custom parameters are:
+- `value_replace_func`: Controls the automatic value transformation logic; by default, it does not replace.
+- `layout_parser_func`: Controls the logic for parsing layouts when using `compile_ui`.
+- `widget_parser_func`: Controls the logic for parsing widgets when using `compile_ui`.
 
-这些自定义参数可以通过 `uiml` 的 `set_namespace` 方法来设置。
+These custom parameters can be set using `uiml`'s `set_namespace` method.
 
-## 类的自定义
+## Customizing Classes
 
-对于类的自定义，可以通过创建一个`UIMLLayout`的子类来实现。
+For class customization, you can achieve it by creating a subclass of `UIMLLayout`.
 
-默认提供了以下扩展替换方法：
-- `UIMLLayout.extend_layout`：对于类型不是`h`或`v`的布局，可以在这里添加，默认报错。
-- `UIMLLayout.extend_widget`：修改组件的添加逻辑。
+The following extended replacement methods are provided by default:
+- `UIMLLayout.extend_layout`: For layouts whose type is not `h` or `v`, you can add them here; by default, it will raise an error.
+- `UIMLLayout.extend_widget`: Modifies the logic for adding widgets.
 
-还可以修改别的方法，比如修改`UIMLLayout.find_widget`修改组件查找逻辑，但是这意味着需要重写整个函数，而不是简单的扩展替换。
+You can also modify other methods, such as changing `UIMLLayout.find_widget` to alter the widget search logic, but this means you need to rewrite the entire function rather than simply extending the replacement.
 
-## 示例
-我要新增一个layout类型't'，是一个自定义类"TLayout"，对应一个通过`add_row`方法添加一行三列的布局
+## Example
+I want to add a new layout type 't', which is a custom class `TLayout`, corresponding to a layout that adds a row with three columns using the `add_row` method:
 
-- 需要有3个子参数，位于标签保卫中，对应`add_row`的三个项目：一个字符串（不用写成Qlabel），一个输入框，一个下拉框，分别是：`texts`, `inputs`, `combos`，来创建一个布局
-- 在combos变化的时候发出提示
-- texts的第一项，inputs的第一项，combos的第一项，对应`add_row`的第一列的三个参数
-- texts的第二项，inputs的第二项，combos的第二项，对应`add_row`的第二列的三个参数，以此类推
+- It needs three sub-parameters, located in the tag body, corresponding to the three items in `add_row`: a string (does not need to be written as QLabel), an input box, and a dropdown box — `texts`, `inputs`, `combos`, respectively, to create the layout.
+- Emit a notification when `combos` changes.
+- The first item of `texts`, the first item of `inputs`, and the first item of `combos` correspond to the three arguments of the first column in `add_row`.
+- The second item of `texts`, the second item of `inputs`, and the second item of `combos` correspond to the three arguments of the second column in `add_row`, and so on.
 
-以下是代码实现：
+The following is the code implementation:
 
-文件树：
+File tree:
 ```
 uiml_demo/
 ├── main.py
@@ -56,17 +56,17 @@ uiml_demo/
     </layout>
     <QLabel name="label1" args=['Hello!'] style="bigger_text" />
 </layout>
-<!-- 
-这里涵盖了大部分常见的方法，
-- 通过init_steps: [{"name": "funtion_name", "args": [...], "kwargs": ...]}}]，可以实现初始化逻辑
-- 通过signal: {'currentIndexChanged': lambda: print('combo changed')}, 可以实现下拉框变化时的提示
-- 通过style: 'bigger_text', 可以实现样式修改
+<!--
+This covers most common methods,
+- Through init_steps: [{"name": "funtion_name", "args": [...], "kwargs": ...]}], you can implement initialization logic
+- Through signal: {'currentIndexChanged': lambda: print('combo changed')}, you can implement prompts when the dropdown changes
+- Through style: 'bigger_text', you can implement style modifications
 -->
 ```
 
 **main.py**:
 ```python
-# 为了关注重点，先不考虑这个TLayout的实现
+# In order to focus on the key points, let's not consider the implementation of this TLayout for now.
 import uiml
 
 def layout_parser(ui_data: Dict[str, Any]):
@@ -80,19 +80,19 @@ def layout_parser(ui_data: Dict[str, Any]):
     if ui_data.get('direction').lower() == 't':
         input_compiled_list = []
 
-        # 索引0 -- 字符串
-        # 索引1 -- 输入框
-        # 索引2 -- 选择框
+        # Index 0 -- String
+        # Index 1 -- Input box
+        # Index 2 -- Combo box
         inputs = ui_data['content'][1]
-        for input in inputs['content']: # 解析输入框
-            input_compiled_list.append(uiml.compile_ui(input)) # 递归解析
+        for input in inputs['content']: # Parse inputs
+            input_compiled_list.append(uiml.compile_ui(input)) # Recursively compile UI
 
         combos = ui_data['content'][2]
         combos_compiled_list = []
-        for combo in combos['content']: # 解析选择框
-            combos_compiled_list.append(uiml.compile_ui(combo)) # 递归解析
-        return {'name': ui_data.get('name'), 'direction': ui_data.get('direction'), "texts": ui_data['content'][0]['values'], 'inputs': input_compiled_list, 'combos': combos_compiled_list} # 返回一个结构
-    return uiml.default_layout_parser(ui_data) # 交由uiml进行默认替换
+        for combo in combos['content']: # Parse combos
+            combos_compiled_list.append(uiml.compile_ui(combo)) # Recursively compile UI
+        return {'name': ui_data.get('name'), 'direction': ui_data.get('direction'), "texts": ui_data['content'][0]['values'], 'inputs': input_compiled_list, 'combos': combos_compiled_list} # Return the parsed layout data
+    return uiml.default_layout_parser(ui_data) # Make it to default layout parser
 
 uiml.set_namespace(layout_parser_func=layout_parser) # 设置自定义解析函数
 
@@ -100,55 +100,54 @@ class MyUIMLLayout(uiml.UIMLLayout):
     def __init__(self, list):
         super().__init__(list)
 
-    # 扩展find_widget，确保combo和input可见于t_layout的子元素下
+    # Extend find_widget to ensure combo and input are visible under the child elements of t_layout
     def find_widget(self, path: str, data=None):
-        '''
-        在嵌套字典结构中按点分隔路径查找元素。
+        '''Find elements in a nested dictionary structure using a dot-separated path.
 
-        规则：
-        - 路径中的每一段对应字典中的 'name' 字段。
-        - 若当前节点是布局（含有 'direction' 键），且不是最后一段，则自动进入其子元素继续查找。
-        - 普通布局（direction 非 't'）的子元素在 'content' 列表中。
-        - 特殊布局（direction == 't'）的子元素在 'inputs' 和 'combos' 列表中（'texts' 不参与导航）。
-        - 最后一段如果是普通布局，返回其 'content' 列表；如果是 'u' 布局，返回 {'texts':..., 'inputs':..., 'combos':...}；如果是控件，返回其 'content'。
-        - 路径必须完整且精确，找不到时抛出 KeyError。
+            Rules:
+            - Each segment in the path corresponds to the 'name' field in the dictionary.
+            - If the current node is a layout (contains the 'direction' key) and is not the last segment, automatically enter its child elements to continue the search.
+            - Children of normal layouts (direction not 't') are in the 'content' list.
+            - Children of special layouts (direction == 't') are in the 'inputs' and 'combos' lists ('texts' are not involved in navigation).
+            - If the last segment is a normal layout, return its 'content' list; if it is a 'u' layout, return {'texts': ..., 'inputs': ..., 'combos': ...}; if it is a control, return its 'content'.
+            - The path must be complete and exact; if not found, raise a KeyError.
 
-        参数:
-            path: 点分隔的路径字符串，如 "layout.vlayout.checkbox2"
-            data: 根字典（例如 {'name': 'layout', 'direction': 'h', 'content': [...]}）
+            Parameters:
+            path: dot-separated path string, e.g., "layout.vlayout.checkbox2"
+            data: root dictionary (for example, {'name': 'layout', 'direction': 'h', 'content': [...]})
 
-        返回:
-            根据路径找到的控件对象、布局的 content 列表，或 'u' 布局的 texts/inputs/combos 字典。
-        '''
+            Returns:
+            The control object found by the path, the content list of a layout, or the texts/inputs/combos dictionary of a 'u' layout.
+            '''
         data = self.list if data is None else data
         parts = path.split('.')
         if not parts:
             raise ValueError("Empty path")
 
-        # 根节点名称必须匹配第一段
+        # Root name must match the first part
         if data.get('name') != parts[0]:
             raise KeyError(f"Root name mismatch: expected '{parts[0]}', got '{data.get('name')}'")
 
         current = data
 
         for i, part in enumerate(parts):
-            # 检查当前节点名称是否匹配
+            # Check if the current node name matches the part
             if current.get('name') != part:
                 raise KeyError(f"Name mismatch: expected '{part}', got '{current.get('name')}'")
 
-            # 最后一段
+            # Last segment
             if i == len(parts) - 1:
                 if 'direction' in current:
                     direction = current.get('direction', '').lower()
                     if direction == 't':
-                        # 特殊布局：返回 texts、inputs、combos 组成的字典
+                        # Special layout: return texts/inputs/combos dictionary
                         return {
                             'texts': current.get('texts', []),
                             'inputs': current.get('inputs', []),
                             'combos': current.get('combos', [])
                         }
                     else:
-                        # 普通布局：返回 content 列表
+                        # Normal layout: return content list
                         content = current.get('content')
                         if content is None:
                             raise ValueError(f"Layout '{part}' has no content")
@@ -156,13 +155,13 @@ class MyUIMLLayout(uiml.UIMLLayout):
                             raise TypeError(f"Layout '{part}' content is not a list")
                         return content
                 else:
-                    # 控件：返回 content 属性
+                    # Widget: return content list
                     content = current.get('content')
                     if content is None:
                         raise ValueError(f"Widget '{part}' has no content")
                     return content
 
-            # 不是最后一段，当前节点必须是布局
+            # Not the last segment, enter child elements
             if 'direction' not in current:
                 raise KeyError(f"'{part}' is not a layout, cannot traverse further")
 
@@ -171,13 +170,13 @@ class MyUIMLLayout(uiml.UIMLLayout):
             found = None
 
             if direction == 't':
-                # 从 inputs 和 combos 中查找子元素
+                # Find children in inputs and combos
                 for child in current.get('inputs', []) + current.get('combos', []):
                     if child.get('name') == next_name:
                         found = child
                         break
             else:
-                # 普通布局从 content 中查找
+                # Find children in content if it is a normal layout
                 for child in current.get('content', []):
                     if child.get('name') == next_name:
                         found = child
@@ -187,10 +186,10 @@ class MyUIMLLayout(uiml.UIMLLayout):
                 raise KeyError(f"Child '{next_name}' not found in layout '{part}'")
             current = found
 
-        # 正常流程不会执行到这里
+        # Normal flow will not reach here
         return None
 
-    # 扩展显示逻辑，确保能正常加载TLayout
+    # Extend extend_layout to handle 't' layout
     def extend_layout(self, list_info):
         if list_info['direction'].lower() == 't':
             from uiStyles.widgets import UnitInputLayout
@@ -200,7 +199,7 @@ class MyUIMLLayout(uiml.UIMLLayout):
                 layout.add_row(text_show, input['content'], combo['content'])
             return layout, 'layout'
         else:
-            uiml.WidgetError.direction_error() # 交由 uiml 进行处理
+            uiml.WidgetError.direction_error() # Make it to default layout parser
 ```
 
 **style.qss**:
@@ -216,19 +215,20 @@ import uiml
 import main
 
 if __name__ == "__main__":
-    # 初始化
+    # Initialize the application
     app = uiml.QApplication([])
     widget = uiml.compile_ui('layout.uiml')
 
     with open('style.qss', 'r') as f:
-        widget.setStyleSheet(f.read()) # 加载样式
+        widget.setStyleSheet(f.read()) # Load the style sheet
     
-    # 加载ui
-    layout = main.MyUIMLLayout(compile_ui_file('layout.uiml')) # 从文件中加载配置 这个compile_ui_file函数会自己寻找ui文件，并且会自动使用main.py中的设置的layout_parser_func,还有默认的widget_parser_func和value_replace_func，所以你不需要再设置这些参数了
-    widget.set_layout(layout) # 设置布局
-    widget.show() # 显示应用
+    # Load UI
+    layout = main.MyUIMLLayout(compile_ui_file('layout.uiml'))  # Load configuration from file
+    # This compile_ui_file function will automatically find the UI file and use the layout_parser_func set in main.py, as well as the default widget_parser_func and value_replace_func, so you don't need to set these parameters yourself
+    widget.set_layout(layout)  # Set layout
+    widget.show()  # Show application
 
-    app.exec() # 启动应用
+    app.exec()  # Start application
 ```
 
-这样，你就能在 `uiml` 中实现自定义布局和组件解析逻辑了。你可以根据需要扩展和修改这些方法，以满足你的具体需求。
+In this way, you can implement custom layout and component parsing logic in `uiml`. You can extend and modify these methods as needed to meet your specific requirements.
