@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+# 1. 定义触发工作流的事件：当推送到 main 分支时触发
+on:
+  push:
+    branches:
+      - main # 推送到 main 分支时触发
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    # 任务运行的环境：最新版本的 Ubuntu 虚拟机
+    runs-on: ubuntu-latest
+
+    # 3. 任务的具体步骤
+    steps:
+      # 步骤1: 签出你的仓库代码到虚拟机
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      # 设置 Node.js 环境
+      - name: Setup Node.js 🔧
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+          cache: 'npm' # 启用 npm 缓存以加速后续安装
+
+      # 安装项目依赖
+      - name: Install Dependencies 📦
+        run: |
+          cd ./document
+          npm ci
+
+      # 构建项目（生成静态文件到 dist/ 或 build/ 目录）
+      - name: Build Project 🏗️
+        run: npm run build
+
+      # 部署到 GitHub Pages 分支
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/.vitepress/dist

@@ -1,0 +1,114 @@
+name: "🐛Bug"
+title: "🐛[BUG]"
+description: 报告一个bug。
+labels: 
+  - bug
+type: Bug
+body:
+- type: markdown
+  attributes:
+    value: |
+      > [!NOTE]
+      > 为避免造成更多的麻烦，请在报告issue前，先检查是否有其他人已经报告过相同的问题。[检查是否存在重复](https://github.com/xystudiocode/uiml/issues)😊
+      
+      > [!IMPORTANT]
+      > 我们不会在gitee上处理issue，请使用github发布。🙋‍♂️
+
+      > [!TIP]
+      > 请一次只报告1个问题。😀
+- type: input
+  attributes:
+    label: 🔡uiml版本
+    placeholder: X.X.X 或 X.X.X.X
+    description: 
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: 🐍bug描述
+    placeholder: |
+      请在这描述
+    description: 🐍描述你的bug。
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: 🔦这个bug的影响
+    placeholder: |
+      请在这描述
+    description: 🔦描述这个bug的影响。
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 📝重现步骤
+    placeholder: |
+      1. 步骤1
+      2. 步骤2
+      3. 步骤3
+      4. 步骤...
+    description: 🔧描述如何重现这个bug。
+  validations:
+    required: false
+- type: input
+  attributes:
+    label: ℹ️你预估的受影响的uiml版本
+    placeholder: |
+      >=X.X.X 或 >=X.X.X.X
+    description: 🔠反馈大于等于一个三位或四位版本号。
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 📄你的解决步骤想法
+    placeholder: |
+      - 解决方案1:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 解决方案2:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 解决方案3:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 其他解决方案...
+    description: ♻️可以提供多个Bug解决方案，但请确保每个方案都能解决你的问题。
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 🔄️缓解bug的方案
+    placeholder: |
+      - 解决方案1:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 解决方案2:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 解决方案3:
+      - 1. 解决步骤1
+      - 2. 解决步骤2
+      - 3. 解决步骤3
+      - 4. 解决步骤...
+      - 其他解决方案...
+    description: 🔄️可以提供多个Bug环节方案，但请确保每个方案都能解决你的问题。
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: ➕其他相关信息
+    placeholder: |
+      你使用的操作系统版本、系统语言、造成bug软件等。
+    description: ✉️提供更多信息，如操作系统版本、系统语言、造成bug软件等。
+  validations:
+    required: false

@@ -1,0 +1,66 @@
+name: ❇️新功能
+description: 一个你建议添加的新功能。
+title: "❇️[FEATURE]"
+labels: enhancement
+type: Feature
+body:
+- type: markdown
+  attributes:
+    value: |
+      > [!NOTE]
+      > 为避免造成更多的麻烦，请在报告issue前，先检查是否有其他人已经报告过相同的问题。[检查是否存在重复](https://github.com/xystudiocode/uiml/issues)😊
+      
+      > [!IMPORTANT]
+      > 我们不会在gitee上处理issue，请使用github发布。🙋‍♂️
+
+      > [!TIP]
+      > 请一次只报告1个功能。😀
+- type: textarea
+  attributes:
+    label: 📄新增功能描述
+    placeholder: |
+      详细描述你想要新增的功能。
+    description: 📄请详细描述你想要新增的功能。
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: ❔需要这个功能的原因
+    placeholder: |
+      解决了什么问题？
+      改进了什么？
+      其他原因...
+    description: ❔为什么需要这个功能？
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: 🧾实行步骤想法
+    placeholder: |
+      - 实行方案1:
+      - 1. 实行步骤1
+      - 2. 实行步骤2
+      - 3. 实行步骤3
+      - 4. 实行步骤...
+      - 实行方案2:
+      - 1. 实行步骤1
+      - 2. 实行步骤2
+      - 3. 实行步骤3
+      - 4. 实行步骤...
+      - 实行方案3:
+      - 1. 实行步骤1
+      - 2. 实行步骤2
+      - 3. 实行步骤3
+      - 4. 实行步骤...
+      - 其他实行方案...
+    description: ♻️可以提供多个新功能实行方案，但请确保每个方案都能实行你的需求。
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: ➕其他相关信息
+    description: 📄你了解到的更多内容。
+    placeholder: |
+      更多信息。
+  validations:
+    required: false
