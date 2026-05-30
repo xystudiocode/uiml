@@ -6,11 +6,11 @@ A speacial XML format for drawing PySide6 UI interfaces A special XML format for
 <br />
 <div align = "center">
     <a href="https://github.com/xystudiocode/uiml/actions?query=workflow%3Adeploy">
-        <img src="https://github.com/xystudiocode/uiml/workflows/deploy/badge.svg"
+        <img src="https://github.com/xystudiocode/uiml/actions/workflows/deploy.yml/badge.svg"
             alt="deploy">
     </a>
     <a href="https://github.com/xystudiocode/uiml/actions?query=workflow%3Atest">
-        <img src="https://github.com/xystudiocode/uiml/workflows/test/badge.svg"
+        <img src="https://github.com/xystudiocode/uiml/actions/workflows/test.yml/badge.svg"
             alt="test">
     </a>
     <a href="https://pypi.org/project/uiml/">

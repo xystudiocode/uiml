@@ -31,7 +31,6 @@ jobs:
       # 安装项目依赖
       - name: Install Dependencies 📦
         run: |
-          cd ./document
           npm ci
 
       # 构建项目（生成静态文件到 dist/ 或 build/ 目录）
@@ -43,4 +42,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs/.vitepress/dist
+          folder: document/docs/.vitepress/dist

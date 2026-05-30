@@ -4,9 +4,9 @@
   "type": "module",
   "description": "UIML documentation built in vitepress.",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "dev": "vitepress dev document/docs",
+    "build": "vitepress build document/docs",
+    "preview": "vitepress preview document/docs"
   },
   "author": "xystudio",
   "license": "MIT",
