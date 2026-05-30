@@ -47,4 +47,4 @@ If it runs successfully, a window containing a label and a button will be displa
 
 It should display:
 
-<img src="imgs/demo/1.png" width="200px" />
+<img src="/imgs/demo/1.png" width="200px" />

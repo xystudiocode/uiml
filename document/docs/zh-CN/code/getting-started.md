@@ -47,4 +47,4 @@ app.exec()
 
 应该会显示：
 
-<img src="\imgs\demo\1.png" width="200px" />
+<img src="/imgs/demo/1.png" width="200px" />
