@@ -1,0 +1,1 @@
+import{c as e,Q as t,j as i,m as l}from"./chunks/framework.DNCHov2B.js";const p=JSON.parse('{"title":"agent对话模板","description":"","frontmatter":{},"headers":[],"relativePath":"agents.md","filePath":"agents.md"}'),n={name:"agents.md"};function r(o,a,s,h,d,_){return t(),i("div",null,[...a[0]||(a[0]=[l("",6)])])}const m=e(n,[["render",r]]);export{p as __pageData,m as default};
