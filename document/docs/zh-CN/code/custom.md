@@ -50,8 +50,8 @@ uiml_demo/
             <QLineEdit name="input_b" />
         </inputs>
         <combos>
-            <QComboBox name="combo_a" init_steps=[{"name": "addItems", "args": [['a', 'b']]}] signal={'currentIndexChanged': lambda: print('combo_a changed')}/>
-            <QComboBox name="combo_b" init_steps=[{"name": "addItems", "args": [['c', 'd']]}] signal={'currentIndexChanged': lambda: print('combo_b changed')}/>
+            <QComboBox name="combo_a" init_steps=[{"name": "addItems", "args": [['a', 'b']]}] signals={'currentIndexChanged': lambda: print('combo_a changed')}/>
+            <QComboBox name="combo_b" init_steps=[{"name": "addItems", "args": [['c', 'd']]}] signals={'currentIndexChanged': lambda: print('combo_b changed')}/>
         </combos>
     </layout>
     <QLabel name="label1" args=['Hello!'] style="bigger_text" />
@@ -59,7 +59,7 @@ uiml_demo/
 <!-- 
 这里涵盖了大部分常见的方法，
 - 通过init_steps: [{"name": "funtion_name", "args": [...], "kwargs": ...]}}]，可以实现初始化逻辑
-- 通过signal: {'currentIndexChanged': lambda: print('combo changed')}, 可以实现下拉框变化时的提示
+- 通过signals: {'currentIndexChanged': lambda: print('combo changed')}, 可以实现下拉框变化时的提示
 - 通过style: 'bigger_text', 可以实现样式修改
 -->
 ```

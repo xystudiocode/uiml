@@ -286,13 +286,13 @@ def default_widget_parser(widget_data: Dict[str, Any], namespace: Dict[str, Any]
     kwargv = {} # 关键字参数
     style = widget_data.get('style', '') # 样式
     
-    for arg in widget_data.get('arg', []):
+    for arg in widget_data.get('args', []):
         if type(arg) == str:
             argv.append(replacer(arg))
         else:
             argv.append(arg)
             
-    for k, arg in widget_data.get('kwarg', {}).items():
+    for k, arg in widget_data.get('kwargs', {}).items():
         if type(arg) == str:
             kwargv[k] = replacer(arg)
         else:
