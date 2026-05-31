@@ -11,9 +11,9 @@ A uiml file is an XML file used to define the layout, style, and signals of the 
 
 ```xml
 <layout name="central_layout" direction="v">
-<QLabel name="text" arg=["This is a label"] />
+<QLabel name="text" args=["This is a label"] />
 <layout name="bottom_layout" direction="h" stretch="true">
-<QPushButton name="ok_button" arg=["Close the window"] style="selected" signals={"clicked": self.close} />
+<QPushButton name="ok_button" args=["Close the window"] style="selected" signals={"clicked": self.close} />
 </layout>
 </layout>
 ```

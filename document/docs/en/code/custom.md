@@ -50,8 +50,8 @@ uiml_demo/
             <QLineEdit name="input_b" />
         </inputs>
         <combos>
-            <QComboBox name="combo_a" init_steps=[{"name": "addItems", "args": [['a', 'b']]}] signal={'currentIndexChanged': lambda: print('combo_a changed')}/>
-            <QComboBox name="combo_b" init_steps=[{"name": "addItems", "args": [['c', 'd']]}] signal={'currentIndexChanged': lambda: print('combo_b changed')}/>
+            <QComboBox name="combo_a" init_steps=[{"name": "addItems", "args": [['a', 'b']]}] signals={'currentIndexChanged': lambda: print('combo_a changed')}/>
+            <QComboBox name="combo_b" init_steps=[{"name": "addItems", "args": [['c', 'd']]}] signals={'currentIndexChanged': lambda: print('combo_b changed')}/>
         </combos>
     </layout>
     <QLabel name="label1" args=['Hello!'] style="bigger_text" />
