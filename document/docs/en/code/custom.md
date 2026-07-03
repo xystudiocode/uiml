@@ -8,6 +8,14 @@ Currently, the default custom parameters are:
 - `value_replace_func`: Controls the automatic value transformation logic; by default, it does not replace.
 - `layout_parser_func`: Controls the logic for parsing layouts when using `compile_ui`.
 - `widget_parser_func`: Controls the logic for parsing widgets when using `compile_ui`.
+- `additional_used_widget_key`: Sets an extended widget_key for easy access, without adding it to parameters. 
+- `additional_used_layout_key`: Sets a list of extended widget_keys for easy access, without adding them to parameters. 
+- `namespace_parser_func`: Controls the logic for parsing the namespace.
+- `reverse`: Controls the stack order when parsing scopes
+- - Default: `False`
+- - If set to `True`, the stack order when parsing scopes is from top to bottom (the scope at the bottom of the stack will override the scope at the top)
+- - If set to `False`, the stack order when parsing scopes is from bottom to top (the scope at the bottom of the stack will override the scope at the top).
+- ``
 
 These custom parameters can be set using `uiml`'s `set_namespace` method.
 
@@ -18,6 +26,11 @@ For class customization, you can achieve it by creating a subclass of `UIMLLayou
 The following extended replacement methods are provided by default:
 - `UIMLLayout.extend_layout`: For layouts whose type is not `h` or `v`, you can add them here; by default, it will raise an error.
 - `UIMLLayout.extend_widget`: Modifies the logic for adding widgets.
+- `UIMLLayout.adder`: Controls the parameters when adding a component, returns `Tuple[QWidget | QLayout, Dict[str, Any]]`.
+- `UIMLLayout.return_layout`: Controls the return value when adding a layout.
+- `UIMLLayout.add_layout`: Controls the behavior of adding layouts.
+- - Sub-method: `UIMLLayout._for_loop`: Loops through and adds sub-layouts.
+- - Sub-method: `UIMLLayout._add_stretch`: Adds stretch.
 
 You can also modify other methods, such as changing `UIMLLayout.find_widget` to alter the widget search logic, but this means you need to rewrite the entire function rather than simply extending the replacement.
 

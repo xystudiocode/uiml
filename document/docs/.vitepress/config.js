@@ -104,7 +104,8 @@ export default withMermaid({
                 { text: 'Index', link: '/en/code/' },
                 { text: 'Getting Started', link: '/en/code/getting-started' },
                 { text: 'Parameter Meaning', link: '/en/code/value' },
-                { text: 'Customization', link: '/en/code/custom' }
+                { text: 'Customization', link: '/en/code/custom' },
+                { text: 'FAQ', link: '/en/code/faq' }
               ]
             }
           ]
@@ -161,7 +162,8 @@ export default withMermaid({
                 { text: '目录', link: '/zh-CN/code/' },
                 { text: '开始', link: '/zh-CN/code/getting-started' },
                 { text: '参数含义', link: '/zh-CN/code/value' },
-                { text: '自定义', link: '/zh-CN/code/custom' }
+                { text: '自定义', link: '/zh-CN/code/custom' },
+                { text: 'FAQ', link: '/zh-CN/code/faq' }
               ]
             }
           ]
