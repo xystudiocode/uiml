@@ -123,6 +123,31 @@ def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, addition
         expr = re.sub(r'\bnull\b', 'None', expr)
         return expr
 
+    def is_attribute_start(pos: int) -> bool:
+        '''判断 pos 处是否是一个新属性的开头（形如 name=），用于区分裸值中的空格。'''
+        k = pos
+        while k < n and is_name_char(xml_str[k]):
+            k += 1
+        if k == pos:
+            return False
+        while k < n and xml_str[k].isspace():
+            k += 1
+        if k >= n or xml_str[k] != '=':
+            return False
+        # '==' 是比较运算符，不是属性赋值
+        return k + 1 >= n or xml_str[k + 1] != '='
+
+    def should_end_value_at(pos: int) -> bool:
+        '''判断 pos 处的空白是否表示当前裸值结束（后面是下一个属性或标签结束）。'''
+        k = pos
+        while k < n and xml_str[k].isspace():
+            k += 1
+        if k >= n:
+            return True
+        if xml_str[k] == '>' or (xml_str[k] == '/' and k + 1 < n and xml_str[k + 1] == '>'):
+            return True
+        return is_attribute_start(k)
+
     def parse_attribute_value() -> Any:
         nonlocal idx
         if idx >= n:
@@ -146,14 +171,44 @@ def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, addition
 
         start = idx
         depth = 0
+        quote = ''  # 当前所在的字符串字面量引号，'' 表示不在字符串中（支持 ''' 和 """）
         while idx < n:
             c = xml_str[idx]
-            if c in '[{':
+
+            if quote:
+                # 字符串内部：空白、'>'、'/>' 等都属于字符串内容
+                if c == '\\' and idx + 1 < n:
+                    idx += 2
+                    continue
+                if xml_str.startswith(quote, idx):
+                    idx += len(quote)
+                    quote = ''
+                    continue
+                idx += 1
+                continue
+
+            if c in ('"', "'"):
+                if xml_str.startswith(c * 3, idx):
+                    quote = c * 3
+                    idx += 3
+                else:
+                    quote = c
+                    idx += 1
+                continue
+
+            if c in '([{':
                 depth += 1
-            elif c in ']}':
-                depth -= 1
-            elif depth == 0 and (c.isspace() or c == '>' or (c == '/' and idx + 1 < n and xml_str[idx + 1] == '>')):
-                break
+            elif c in ')]}':
+                if depth > 0:
+                    depth -= 1
+            elif depth == 0:
+                if c.isspace():
+                    # 裸值中可以包含空格（如 lambda:print('Clicked by layout!')），
+                    # 只有空白后是下一个属性或标签结束时才结束当前值
+                    if should_end_value_at(idx):
+                        break
+                elif c == '>' or (c == '/' and idx + 1 < n and xml_str[idx + 1] == '>'):
+                    break
             idx += 1
         expr = xml_str[start:idx].strip()
         if not expr:
