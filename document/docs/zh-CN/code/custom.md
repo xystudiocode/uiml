@@ -8,6 +8,19 @@
 - `value_replace_func`：控制值的自动变换逻辑，默认不替换。
 - `layout_parser_func`: 控制在`compile_ui`时候，解析布局的逻辑。
 - `widget_parser_func`: 控制在`compile_ui`时候，解析组件的逻辑。
+- `additional_used_widget_key`：设置扩展的widget_key，方便读取，同时不会执行添加到参数。
+- `additional_used_layout_key`: 设置扩展的widget_key列表，方便读取，同时不会执行添加到参数。
+- `namespace_parser_func`：控制解析命令空间的逻辑。
+- `reverse`: 控制解析作用域时候的堆栈顺序
+- - 默认：`False`
+- - 如果设置为`True`，则解析作用域时候的堆栈顺序为从栈顶到栈底（栈底的作用域会覆盖栈顶的作用域）
+- - 如果设置为`False`，则解析作用域时候的堆栈顺序为从栈底到栈顶（栈底的作用域会覆盖栈顶的作用域）。
+- `enable_value_convert`: 控制是否在解析时进行值转换
+- - 默认：`False`
+- - 如果设置为`False`，则解析时不会进行值转换
+- - 如果设置为`True`，则解析时会进行值转换
+::: tip 提示
+`enable_value_convert`只影响*外部变量或函数*，不影响*python默认函数或变量*
 
 这些自定义参数可以通过 `uiml` 的 `set_namespace` 方法来设置。
 
@@ -16,8 +29,13 @@
 对于类的自定义，可以通过创建一个`UIMLLayout`的子类来实现。
 
 默认提供了以下扩展替换方法：
-- `UIMLLayout.extend_layout`：对于类型不是`h`或`v`的布局，可以在这里添加，默认报错。
+- `UIMLLayout.extend_layout`：对于类型不是`h`或`v`的布局，可以在这里添加返回，默认报错。
 - `UIMLLayout.extend_widget`：修改组件的添加逻辑。
+- `UIMLLayout.adder`：控制在添加组件时候的参数，返回`Tuple[QWidget | QLayout, Dict[str, Any]]`。
+- `UIMLLayout.return_layout`：控制在添加布局的返回值。
+- `UIMLLayout.add_layout`: 控制添加布局的行为。
+- - 子方法：`UIMLLayout._for_loop`：循环遍历添加子布局。
+- - 子方法：`UIMLLayout._add_stretch`: 添加伸缩条。
 
 还可以修改别的方法，比如修改`UIMLLayout.find_widget`修改组件查找逻辑，但是这意味着需要重写整个函数，而不是简单的扩展替换。
 
