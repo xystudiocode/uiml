@@ -5,6 +5,14 @@ import re
 
 skip_level=1
 
+# 标签名/属性名中允许出现的符号（字母、数字、下划线之外）
+# 例如模块路径 QtWidgets.QLabel 中的 '.'、XML 命名空间中的 ':'、kebab-case 中的 '-'
+NAME_SYMBOLS = frozenset('._-:')
+
+def is_name_char(ch: str) -> bool:
+    '''判断字符是否可以出现在标签名或属性名中。'''
+    return ch.isalnum() or ch in NAME_SYMBOLS
+
 def load_namespace(check_global:bool=True, check_local: bool = False, reverse: bool=None, additional=None) -> Dict[str, Any]:
     '''
     获取当前调用方的命名空间（全局+局部变量合并）。
@@ -83,7 +91,7 @@ def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, addition
             raise ValueError(f"期望 '<'，实际 '{xml_str[idx]}'")
         idx += 1
         start = idx
-        while idx < n and (xml_str[idx].isalnum() or xml_str[idx] == '_'):
+        while idx < n and is_name_char(xml_str[idx]):
             idx += 1
         if start == idx:
             raise ValueError('无效的标签名')
@@ -92,7 +100,7 @@ def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, addition
     def parse_tag_name_only() -> str:
         nonlocal idx
         start = idx
-        while idx < n and (xml_str[idx].isalnum() or xml_str[idx] == '_'):
+        while idx < n and is_name_char(xml_str[idx]):
             idx += 1
         if start == idx:
             raise ValueError('无效的标签名')
@@ -159,7 +167,7 @@ def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, addition
                 break
 
             start = idx
-            while idx < n and (xml_str[idx].isalnum() or xml_str[idx] == '_'):
+            while idx < n and is_name_char(xml_str[idx]):
                 idx += 1
             if start == idx:
                 raise ValueError('无效的属性名')
