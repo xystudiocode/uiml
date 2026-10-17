@@ -1,5 +1,15 @@
+from __future__ import annotations
+
 from typing import Any, Dict, Optional, Tuple
-from uiml.uilib import *
+
+try:
+    from uiml.uilib import *
+except ImportError as e:
+    if "libEGL.so.1" in str(e):
+        pass
+    else:
+        raise
+
 import inspect
 import re
 
@@ -371,7 +381,7 @@ def default_widget_parser(widget_data: Dict[str, Any], namespace: Dict[str, Any]
     for k, arg in widget_data.get('kwargs', {}).items():
         kwargv[k] = reg_replacer(arg)
                 
-    widget = eval(f'{widget_data.get('type')}(*{argv}, **{kwargv})', namespace|additional_value) # 获取函数
+    widget = eval(f"{widget_data.get('type')}(*{argv}, **{kwargv})", namespace|additional_value)
     set_style(widget, style) # 设置样式
 
     for func in widget_data.get('init_steps', []):
@@ -574,7 +584,7 @@ class WidgetError:
     def direction_error():
         '''错误方案：在widget类型中找不到direction属性时，抛出错误。可以自定义添加函数，如替换变量、函数调用等。'''
         raise ValueError('Direction error: cannot find direction attribute in widget type')
-    
+
 set_namespace(
     default_replacer, default_layout_parser, default_widget_parser, 
     namespace_parser_func=load_namespace, reverse=False, 

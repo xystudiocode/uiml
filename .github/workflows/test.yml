@@ -26,6 +26,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r ./tests/requirements.txt
+          pip install . # 从当前目录安装 
       - name: Test🔍
         run: |
           pytest
