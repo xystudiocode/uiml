@@ -13,6 +13,8 @@ except ImportError as e:
 import inspect
 import re
 
+_UNICODE = re.compile(r'&#[xX]([0-9a-fA-F]+);',)
+
 skip_level=1
 
 # 标签名/属性名中允许出现的符号（字母、数字、下划线之外）
@@ -376,7 +378,12 @@ def set_namespace(value_replace_func=None, layout_parser_func=None, widget_parse
     
 def default_replacer(value: str):
     '''默认替换函数，返回原值，可以自定义添加函数，如替换变量、函数调用等。'''
-    return value
+    unicode = re.sub(
+        _UNICODE,
+        lambda m: chr(int(m.group(1), 16)),
+        value
+    )
+    return unicode
 
 def default_layout_parser(ui_data: Dict[str, Any], namespace: Dict[str, Any]=None, additional=None):
     '''默认布局解析函数，进行递归解析返回'''
@@ -628,17 +635,17 @@ class UIMLLayout:
     
     def extend_layout(self, list_info):
         '''扩展布局，可以在不复制draw_layout()函数的情况下，直接在原布局上添加加载时代码'''
-        WidgetError.direction_error() # 默认这里抛出错误，因为widget类型没有direction属性
+        UIMLException.direction_error(list_info['direction'].lower()) # 默认这里抛出错误，因为widget类型没有direction属性
         
     def extend_widget(self, widget_info):
         '''扩展控件，可以在不复制draw_layout()函数的情况下，直接在原控件上添加加载时代码'''
         return widget_info['content'], 'widget'
             
-class WidgetError:
+class UIMLException(Exception):
     @staticmethod
-    def direction_error():
+    def direction_error(direction):
         '''错误方案：在widget类型中找不到direction属性时，抛出错误。可以自定义添加函数，如替换变量、函数调用等。'''
-        raise ValueError('Direction error: cannot find direction attribute in widget type')
+        raise UIMLException(f'Cannot load direction "{direction}" in class uiml::layout')
 
 set_namespace(
     default_replacer, default_layout_parser, default_widget_parser, 
