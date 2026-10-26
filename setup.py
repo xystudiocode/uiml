@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name = "uiml",
-    version = "0.2.4",
+    version = "0.3.0.dev1",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
-    install_requires = ["PySide6>=6.10.0"],
+    install_requires = ["PySide6>=6.10.0", "deprecated>=1.3"],
     python_requires = ">=3.10",
     author = "xystudio",
     author_email = "173288240@qq.com",
