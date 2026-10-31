@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "uiml",
-    version = "0.3.0.dev1",
+    version = "0.3.0.dev2",
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     install_requires = ["PySide6>=6.10.0", "deprecated>=1.3"],

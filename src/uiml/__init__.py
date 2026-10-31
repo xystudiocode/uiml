@@ -47,7 +47,7 @@ class ParserChain:
     def add(self, func:func):
         '''添加一个函数 / 装饰器'''
         self.funcs.append(func)
-        self.check(func)
+        self.check(self.funcs)
         return func
 
     def remove(self, func:func):
