@@ -29,7 +29,7 @@ features:
   details: Simple development; just write the uiml file and load it with a Python function to run.
 - icon: 📦
   title: Extensible
-  details: Customize the uiml parser via the set_namespace function and custom UIMLLayout class.
+  details: Customize the uiml parser via the Parser API (add_parser) and custom UIMLLayout classes.
 - icon: 🔛
   title: Open Source
   details: This software is open-source under the MIT license. You can freely modify, distribute, use, or even charge for it; you can also make suggestions to the official clickmouse to help improve the software.

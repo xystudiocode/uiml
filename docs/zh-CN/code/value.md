@@ -1,5 +1,6 @@
 # 默认支持的参数
 ## Layout
+
 layout是一个布局对象，里面定义了组件
 
 - `name`：布局的名称，可以在代码中引用**必填**
@@ -19,4 +20,5 @@ tag名字需要设置成Qt的标签名，例如`QLabel`、`QPushButton`等。
 - `signals`：组件的信号，可以是字典，例如`'clicked': self.close`
 
 ## 扩展
-你可以重新定义`widget_parser`和`layout_parser`，然后使用`set_namespace`来设置命名空间。
+- **新版本（推荐）**：使用 Parser API，通过 `uiml.add_parser` 注册自定义解析器，详见[自定义（新版本）](./parser.md)。
+- **旧版本**：使用 `uiml.enable_namespace_api()` 和 `uiml.set_namespace(...)` 设置 `widget_parser` / `layout_parser`，详见[自定义（旧版本）](./custom.md)。

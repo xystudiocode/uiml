@@ -19,4 +19,5 @@ The tag name needs to be set to a Qt widget name, such as `QLabel`, `QPushButton
 - `signals`: The signals of the component, which can be a dictionary, for example `'clicked': self.close`
 
 ## Extend
-You can redefine `widget_parser` and `layout_parser`, and then use `set_namespace` to set the namespace.
+- **New version (recommended)**: Use the Parser API and register custom parsers with `uiml.add_parser`; see [Customization (New Version)](./parser.md).
+- **Old version**: Use `uiml.enable_namespace_api()` and `uiml.set_namespace(...)` to set `widget_parser` / `layout_parser`; see [Customization (Old Version)](./custom.md).

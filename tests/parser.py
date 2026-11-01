@@ -19,21 +19,31 @@ def add_parser2(ui_data, namespace, additional):
         print('Read 2 Label')
         return {'name': ui_data.get('name', ''), 'content': QLabel(*ui_data.get('args', []), **ui_data.get('kwargs', {}))}
 
-
-@uiml.widget_parser_chain.add
 def add_parser(ui_data, namespace, additional):
     if ui_data['type'] == 'myapi::QPushButton':
         print('Read 1 Button')
         return {'name': ui_data.get('name', ''), 'content': QLabel(*ui_data.get('args'), **ui_data.get('kwargs', {}))}
 
-app = QApplication()
+def test_main():
+    uiml.add_parser(uiml.ParserEnum.widget_parser, add_parser)
 
-main_widget = QWidget()
+    uiml.add_used_key(uiml.UsedKeyEnum.widget, ['123', '456'])
+    uiml.add_used_key(uiml.UsedKeyEnum.layout, ['789'])
 
-main_layout = uiml.UIMLLayout(uiml.compile_ui(uiml.xml_parse(uimlcode))).show()
+    assert uiml.used_widget_key == uiml.default_used_widget_key + ['123', '456']
+    assert uiml.used_layout_key == uiml.default_used_layout_key + ['789']
 
-main_widget.setLayout(main_layout)
+    app = QApplication()
 
-main_widget.show()
+    main_widget = QWidget()
 
-exit(app.exec())
+    main_layout = uiml.UIMLLayout(uiml.compile_ui(uiml.xml_parse(uimlcode))).show()
+
+    main_widget.setLayout(main_layout)
+
+    main_widget.show()
+
+    exit(app.exec())
+
+if __name__ == '__main__':
+    test_main()

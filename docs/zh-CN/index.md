@@ -29,7 +29,7 @@ features:
     details: 开发简单，写好uiml文件，然后用python函数加载即可运行。
   - icon: 📦
     title: 扩展性强
-    details: 通过set_namespace函数和自定义UIMLLayout类，自定义uiml的解析器。
+    details: 通过 Parser API（add_parser）和自定义 UIMLLayout 类，自定义 uiml 的解析器。
   - icon: 🔛
     title: 开源
     details: 本软件使用mit协议开源，你可以任意修改，分发，使用，甚至收费；你也可以向clickmouse官方提出建议，帮助改进软件。

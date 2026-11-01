@@ -71,7 +71,7 @@ export default withMermaid({
         lastUpdatedText: 'Last Updated',
         editLink: {
           pattern:
-            'https://github.com/xystudiocode/uiml/tree/main/document/docs/:path',
+            'https://github.com/xystudiocode/uiml/tree/main/docs/:path',
           text: 'Edit this page',
         },
         docFooter: {
@@ -104,7 +104,8 @@ export default withMermaid({
                 { text: 'Index', link: '/en/code/' },
                 { text: 'Getting Started', link: '/en/code/getting-started' },
                 { text: 'Parameter Meaning', link: '/en/code/value' },
-                { text: 'Customization', link: '/en/code/custom' },
+                { text: 'Customization (New Version)', link: '/en/code/parser' },
+                { text: 'Customization (Old Version)', link: '/en/code/custom' },
                 { text: 'FAQ', link: '/en/code/faq' }
               ]
             }
@@ -126,7 +127,7 @@ export default withMermaid({
         sidebarMenuLabel: '目录',
         editLink: {
           pattern:
-            'https://github.com/xystudiocode/uiml/tree/main/document/docs/:path',
+            'https://github.com/xystudiocode/uiml/tree/main/docs/:path',
           text: '编辑此页',
         },
         notFound: {
@@ -162,7 +163,8 @@ export default withMermaid({
                 { text: '目录', link: '/zh-CN/code/' },
                 { text: '开始', link: '/zh-CN/code/getting-started' },
                 { text: '参数含义', link: '/zh-CN/code/value' },
-                { text: '自定义', link: '/zh-CN/code/custom' },
+                { text: '自定义（新版本）', link: '/zh-CN/code/parser' },
+                { text: '自定义（旧版本）', link: '/zh-CN/code/custom' },
                 { text: 'FAQ', link: '/zh-CN/code/faq' }
               ]
             }
