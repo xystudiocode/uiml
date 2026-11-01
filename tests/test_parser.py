@@ -1,5 +1,4 @@
 import uiml
-from PySide6.QtWidgets import QWidget,QApplication,QPushButton, QLabel
 
 uimlcode = '''
 <layout direction="v">
@@ -14,15 +13,15 @@ uimlcode = '''
 def add_parser2(ui_data, namespace, additional):
     if ui_data['type'] == 'myapi::QPushButton':
         print('Read 2 Button')
-        return {'name': ui_data.get('name', ''), 'content': QPushButton(*ui_data.get('args', []), **ui_data.get('kwargs', {}))}
+        return {'name': ui_data.get('name', ''), 'content': None}
     elif ui_data['type'] == 'myapi::QLabel':
         print('Read 2 Label')
-        return {'name': ui_data.get('name', ''), 'content': QLabel(*ui_data.get('args', []), **ui_data.get('kwargs', {}))}
+        return {'name': ui_data.get('name', ''), 'content': None}
 
 def add_parser(ui_data, namespace, additional):
     if ui_data['type'] == 'myapi::QPushButton':
         print('Read 1 Button')
-        return {'name': ui_data.get('name', ''), 'content': QLabel(*ui_data.get('args'), **ui_data.get('kwargs', {}))}
+        return {'name': ui_data.get('name', ''), 'content': None}
 
 def test_add_parser():
     uiml.add_parser(uiml.ParserEnum.widget_parser, add_parser)
