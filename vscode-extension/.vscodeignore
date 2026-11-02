@@ -1,0 +1,4 @@
+# Files and folders excluded from the packaged VSIX.
+.vscode/**
+.vscode-test/**
+*.vsix
