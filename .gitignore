@@ -319,3 +319,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Local ad-hoc tooling temp dirs (e.g. temporary npm cache / local vsce install)
+.tmp-*/
+
+*.vsix

@@ -8,18 +8,21 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # 扩展的 package.json 位于 vscode-extension/，所有 run 步骤都在该目录下执行
+    defaults:
+      run:
+        working-directory: vscode-extension
     # 必须声明 id-token: write 权限，才能请求 OIDC 令牌
     permissions:
       contents: read
-      id-token: write 
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22 # 建议使用 22 或更高版本
       - name: Install dependencies
-        run: |
-          cd vscode-extension/
-          npm ci
+        run: npm ci
       - name: Publish to VS Code Marketplace
         run: npx @vscode/vsce publish --oidc
