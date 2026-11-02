@@ -1,0 +1,34 @@
+{
+  "name": "bubble-vscode",
+  "displayName": "Bubble Highlight for VSCode",
+  "description": "UIML and QSS language support for Visual Studio Code.",
+  "version": "0.1.0",
+  "publisher": "xystudio",
+  "icon": "images/icon.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "uiml",
+    "xml",
+    "pyside6",
+    "syntax highlighting",
+    "UI",
+    "UX",
+    "Bubble",
+    "Bubble UI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xystudiocode/uiml"
+  },
+  "homepage": "https://xystudiocode.github.io/uiml",
+  "bugs": {
+    "url": "https://github.com/xystudiocode/uiml/issues"
+  },
+  "main": "./extension.js"
+}

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple, Callable
+from deprecated import deprecated
+from warnings import warn
 
 try:
     from uiml.uilib import *
@@ -12,6 +14,170 @@ except ImportError as e:
 
 import inspect
 import re
+from contextvars import ContextVar
+from enum import Enum
+
+__version__ = '0.3.0a1'
+_UNICODE = re.compile(r'&#[xX]([0-9a-fA-F]+);',)
+func = list[Callable]
+
+namespace_api_enabled = False
+
+class ParserEnum(Enum):
+    replacer = 1 # 参数替换器
+    widget_parser = 2 # 组件解析器
+    layout_parser = 3 # 布局解析器
+    namespace_parser = 4 # 命名空间的解析器
+
+    uiml_class = 7 # 对layout渲染的扩展（注册自定义 UIMLLayout 渲染类）
+
+class UsedKeyEnum(Enum):
+    widget = 1 # 自动删除的组件项目列表
+    layout = 2 # 自动删除的布局项目列表
+
+class ParamEnum(Enum):
+    reverse_namespace = 1 # 翻转命名空间顺序
+    value_convert = 2 # 允许变量转化
+    debug_mode = 3 # 调试模式
+
+class ControlEnum(Enum):
+    reset = 1 # 重置组件
+
+class _NoPaint:
+    '''特殊值类型：表示该节点已处理，但不需要绘制到窗口上。'''
+    __slots__ = ()
+
+    def __repr__(self):
+        return 'NoPaint'
+
+# 特殊值：解析器返回 NoPaint 时会停止解析链，并且该节点不会被绘制。
+# 与 None 不同，None 表示继续执行下一个解析器。
+NoPaint = _NoPaint()
+
+class ParserChain:
+    def __init__(self, funcs: Optional[func] = None):
+        self._funcs = [] if funcs is None else funcs
+        self._default_funcs = [] # 默认函数列表
+
+        if funcs is not None:
+            self.funcs = funcs # 初始校验
+
+        if namespace_api_enabled:
+            raise UIMLException('Namespace API is enabled, please disable it first. ')
+
+    def add(self, func:func):
+        '''添加一个函数 / 装饰器'''
+        self.funcs.append(func)
+        self.check(self.funcs)
+        return func
+
+    def add_default(self, func: func):
+        '''添加一个默认函数 / 装饰器'''
+        self.add(func)
+
+        self._default_funcs.append(func)
+        self._validate(self._default_funcs)
+
+        return func
+
+    def reset(self):
+        self.set(self._default_funcs.copy())
+
+    def remove(self, func:func):
+        '''删除一个函数'''
+        self.funcs.remove(func)
+
+    def set(self, funcs: func):
+        self.funcs = funcs
+
+    @property
+    def funcs(self):
+        return self._funcs
+
+    @funcs.setter
+    def funcs(self, v):
+        self.check(v)
+
+    def check(self, v):
+        self._validate(v)
+        self._funcs = v
+
+    @staticmethod
+    def _validate(v):
+        if isinstance(v, list):
+            for func in v:
+                if not isinstance(func, Callable):
+                    raise TypeError('Function list item must be function')
+        else:
+            raise TypeError('Function list must be list')
+
+    def run(self, *args, **kwargs):
+        '''按照列表的反向顺序执行'''
+        for func in reversed(self.funcs):
+            result = func(*args, **kwargs)
+
+            if result is not None:
+                return result
+
+replacer_chain = ParserChain()
+widget_parser_chain = ParserChain()
+layout_parser_chain = ParserChain()
+namespace_parser_chain = ParserChain()
+uiml_class_chain = ParserChain()
+
+# 防止解析器内部再次构造 UIMLLayout 时无限递归
+_uiml_class_resolving = ContextVar('uiml_class_resolving', default=False)
+
+default_used_widget_key = ['name', 'type', 'args', 'kwargs', 'init_steps', 'signals', 'style']
+default_used_layout_key = ['name', 'direction', 'content', 'stretch']
+
+default_config = {'reverse_namespace': False, 'value_convert': True, 'debug_mode': False}
+config = default_config.copy()  # 默认配置
+
+used_widget_key = default_used_widget_key.copy()
+used_layout_key = default_used_layout_key.copy()
+
+def add_parser(enum: ParserEnum, value: Callable | ControlEnum):
+    match enum:
+        case ParserEnum.replacer:
+            chain = replacer_chain
+        case ParserEnum.widget_parser:
+            chain = widget_parser_chain
+        case ParserEnum.layout_parser:
+            chain = layout_parser_chain
+        case ParserEnum.namespace_parser:
+            chain = namespace_parser_chain
+        case ParserEnum.uiml_class:
+            chain = uiml_class_chain
+        case _:
+            raise ValueError(f'Unknown parser enum: {enum.name}')
+
+    if value == ControlEnum.reset:
+        chain.reset()
+    else:
+        chain.add(value)
+
+def add_used_key(enum: UsedKeyEnum, value: list[str] | ControlEnum):
+    match enum:
+        case UsedKeyEnum.widget:
+            lst = used_widget_key
+            default = default_used_widget_key
+        case UsedKeyEnum.layout:
+            lst = used_layout_key
+            default = default_used_layout_key
+        case _:
+            raise ValueError(f'Unknown used key enum: {enum.name}')
+
+    if value == ControlEnum.reset:
+        lst[:] = default.copy()
+    else:
+        lst.extend(value)
+
+def set_config(enum: ParamEnum, value: bool | ControlEnum):
+    if value == ControlEnum.reset:
+        config[enum.name] = default_config[enum.name]
+        return
+    config[enum.name] = value
 
 skip_level=1
 
@@ -31,9 +197,9 @@ def load_namespace(check_global:bool=True, check_local: bool = False, reverse: b
         check_global: 是否检查全局命名空间。
         check_local: 是否检查局部命名空间。
     '''
-    reverse = default_reverse if reverse is None else False
+    reverse = config['reverse_namespace'] if reverse is None else False
     additional_value = {} if additional is None else additional  # 默认添加额外的空字典
-    if not value_convert:
+    if not config['value_convert']:
         return globals()
     
     stack = inspect.stack()
@@ -46,9 +212,20 @@ def load_namespace(check_global:bool=True, check_local: bool = False, reverse: b
     for frame_info in stack:
         frame = frame_info.frame
         if check_global:namespace.update(frame.f_globals)
-        if (check_local and not(debug)):namespace.update(frame.f_locals)
+        if (check_local and not(config['debug_mode'])):namespace.update(frame.f_locals)
     namespace.update(additional_value)  # 添加额外的值
     return namespace
+
+def _run_namespace_parser():
+    '''
+    获取解析时使用的命名空间。
+
+    - 旧版 Namespace API：使用 set_namespace 设置的 namespace_parser，保持原行为。
+    - 新版 Parser API：运行 namespace_parser_chain，默认回退到 load_namespace。
+    '''
+    if namespace_api_enabled:
+        return namespace_parser()
+    return namespace_parser_chain.run()
 
 def xml_parse(xml_str: str, namespace: Optional[Dict[str, Any]] = None, additional=None) -> Dict[str, Any]:
     '''
@@ -351,10 +528,24 @@ def set_style(widget, class_name: str):
 
     # 3. 触发重绘
     widget.update()
-    
-used_widget_key = ['name', 'type', 'args', 'kwargs', 'init_steps', 'signals', 'style']
-used_layout_key = ['name', 'direction', 'content', 'stretch']
 
+def enable_namespace_api():
+    global namespace_api_enabled
+
+    namespace_api_enabled = True
+
+    set_namespace(
+        default_replacer, default_layout_parser, default_widget_parser, 
+        namespace_parser_func=load_namespace, reverse=False, 
+        enable_value_convert=True, is_debug=False
+    ) # 设置默认解析函数
+
+    warn(
+        'Namespace API is deprecated, please use Parser API (add_parser) instead. Now Parser API is disabled.',
+         category=DeprecationWarning
+    )
+
+@deprecated(reason="Namespace API is deprecated, please use Parser API (add_parser) instead.")
 def set_namespace(value_replace_func=None, layout_parser_func=None, widget_parser_func=None, 
                   additional_used_widget_key=None, additional_used_layout_key=None,
                   namespace_parser_func=None, reverse=None, enable_value_convert=None,
@@ -363,25 +554,40 @@ def set_namespace(value_replace_func=None, layout_parser_func=None, widget_parse
     '''
     设置解析函数/变量时使用的操作。
     '''
-    global replacer, layout_parser, widget_parser, used_widget_key, used_layout_key, namespace_parser, default_reverse, value_convert, debug
+    assert namespace_api_enabled, "Please add 'uiml.enable_namespace_api()' at the beginning of the code to enable the Namespace API"
+
+    global replacer, layout_parser, widget_parser, used_widget_key, used_layout_key, namespace_parser
     if value_replace_func is not None:replacer = value_replace_func
     if layout_parser_func is not None:layout_parser = layout_parser_func
     if widget_parser_func is not None:widget_parser = widget_parser_func
     if additional_used_widget_key is not None:used_widget_key.extend(additional_used_widget_key)
     if additional_used_layout_key is not None:used_widget_key.extend(additional_used_layout_key) # 设置需要解析的字段
     if namespace_parser_func is not None:namespace_parser = namespace_parser_func
-    if reverse is not None:default_reverse = reverse
-    if enable_value_convert is not None:value_convert = enable_value_convert
-    if is_debug is not None:debug = is_debug
-    
+    if reverse is not None:config['reverse_namespace'] = reverse
+    if enable_value_convert is not None:config['value_convert'] = enable_value_convert
+    if is_debug is not None:config['debug_mode'] = is_debug
+
+@replacer_chain.add_default
 def default_replacer(value: str):
     '''默认替换函数，返回原值，可以自定义添加函数，如替换变量、函数调用等。'''
-    return value
+    unicode = re.sub(
+        _UNICODE,
+        lambda m: chr(int(m.group(1), 16)),
+        value
+    )
+    return unicode
 
+@namespace_parser_chain.add_default
+def default_namespace_parser(*args, **kwargs):
+    '''默认命名空间解析函数，使用 load_namespace 获取调用方命名空间。'''
+    return load_namespace(*args, **kwargs)
+
+@layout_parser_chain.add_default
 def default_layout_parser(ui_data: Dict[str, Any], namespace: Dict[str, Any]=None, additional=None):
     '''默认布局解析函数，进行递归解析返回'''
     additional_value = {} if additional is None else additional  # 默认添加额外的空字典
-    if namespace is None:namespace = namespace_parser() # 获取命名空间
+    if ui_data is NoPaint: return NoPaint
+    if namespace is None:namespace = _run_namespace_parser() # 获取命名空间
     if ui_data is None: return {}
     
     other_values = _pop_dict(ui_data.copy(), used_layout_key)
@@ -389,13 +595,16 @@ def default_layout_parser(ui_data: Dict[str, Any], namespace: Dict[str, Any]=Non
     compiled_list = []
     for item in ui_data.get('content', []):
         ui = compile_ui(item, namespace, additional=additional_value) # 递归解析
-        if ui is None:continue
+        if ui is None or ui is NoPaint:continue
         compiled_list.append(ui) # 递归解析
     return {'name': ui_data.get('name'), 'direction': ui_data.get('direction'), 'content': compiled_list, 'stretch': ui_data.get('stretch', False), **other_values}
 
 def reg_replacer(value):
     if isinstance(value, str):
-        return replacer(value)
+        if namespace_api_enabled:
+            return replacer(value) # 使用 Namespace API
+        else:
+            return replacer_chain.run(value) # 使用 Parser API
     elif isinstance(value, dict):
         return default_reg_replacer_dict(value)
     elif isinstance(value, list) or isinstance(value, tuple) or isinstance(value, set):
@@ -421,10 +630,12 @@ def _pop_dict(dict_data, key):
         dict_copy.pop(k, None)
     return dict_copy
 
+@widget_parser_chain.add_default
 def default_widget_parser(widget_data: Dict[str, Any], namespace: Dict[str, Any]=None, additional=None):
     '''默认控件解析函数，进行解析返回'''
     additional_value = {} if additional is None else additional  # 默认添加额外的空字典
-    if namespace is None:namespace = namespace_parser() # 获取命名空间
+    if widget_data is NoPaint: return NoPaint
+    if namespace is None:namespace = _run_namespace_parser() # 获取命名空间
  
     argv = [] # 参数
     kwargv = {} # 关键字参数
@@ -462,14 +673,29 @@ def default_widget_parser(widget_data: Dict[str, Any], namespace: Dict[str, Any]
     
     return {'name': widget_data.get('name'), 'content': widget, **other_values}
 
+@uiml_class_chain.add_default
+def default_uiml_class_parser(*args, **kwargs):
+    '''默认 UI 类解析函数：返回 None，表示使用 UIMLLayout 自身进行渲染。'''
+    return None
+
 def compile_ui(ui_data, namespace=None, additional=None):
+    if ui_data is NoPaint: # 该节点不绘制，也不再继续解析
+        return NoPaint
+
     additional_value = {} if additional is None else additional  # 默认添加额外的空字典
-    if namespace is None:namespace = namespace_parser() # 获取命名空间
+    if namespace is None:
+        namespace = _run_namespace_parser() # 获取命名空间
 
     if ui_data.get('direction'): # 这是layout类型
-        return layout_parser(ui_data, namespace, additional=additional_value)
+        if namespace_api_enabled: # namespace API 语法
+            return layout_parser(ui_data, namespace, additional=additional_value)
+        else:
+            return layout_parser_chain.run(ui_data, namespace, additional=additional)
     else: # 这是widget类型
-        return widget_parser(ui_data, namespace, additional=additional_value)
+        if namespace_api_enabled: # namespace API 语法
+            return widget_parser(ui_data, namespace, additional=additional_value)
+        else:
+            return widget_parser_chain.run(ui_data, namespace, additional=additional)
     
 def compile_ui_file(file_path: str, namespace=None, additional=None):
     '''
@@ -481,8 +707,41 @@ def compile_ui_file(file_path: str, namespace=None, additional=None):
     '''
     additional_value = {} if additional is None else additional  # 默认添加额外的空字典
     return compile_ui(xml_parse_file(file_path, namespace, additional=additional_value), namespace, additional=additional_value)  # 解析 XML 字符串并编译
-    
-class UIMLLayout:
+
+namespace_parser = load_namespace
+
+class _UIMLLayoutMeta(type):
+    '''
+    UIMLLayout 的元类，用于支持 Parser API（ParserEnum.uiml_class）。
+
+    当直接构造 UIMLLayout 时，先运行 uiml_class_chain。如果解析器返回一个
+    UIMLLayout 实例（通常是注册的自定义 UIMLLayout 子类），则直接使用该实例；
+    返回 NoPaint 时不绘制；返回 None 时继续使用 UIMLLayout 自身。
+    '''
+
+    def __call__(cls, *args, **kwargs):
+        if cls is UIMLLayout and not _uiml_class_resolving.get():
+            token = _uiml_class_resolving.set(True) # 防止解析器内部再次构造 UIMLLayout 时无限递归
+            try:
+                parsed = uiml_class_chain.run(*args, **kwargs)
+            finally:
+                _uiml_class_resolving.reset(token)
+
+            if parsed is NoPaint:
+                return NoPaint
+            if parsed is not None:
+                if not isinstance(parsed, UIMLLayout):
+                    raise TypeError(
+                        'uiml_class parser must return a UIMLLayout instance, NoPaint or None, '
+                        f'got {type(parsed).__name__}'
+                    )
+                return parsed
+
+        return super().__call__(*args, **kwargs)
+
+class UIMLLayout(metaclass=_UIMLLayoutMeta):
+    '''布局渲染器；可通过 add_parser(ParserEnum.uiml_class, ...) 注册自定义渲染类。'''
+
     def __init__(self, list):
         self.list = list
         
@@ -495,6 +754,7 @@ class UIMLLayout:
         - 若当前节点是布局（含有 'direction' 键），且不是最后一段，则自动进入其子元素继续查找。
         - 布局的子元素在 'content' 列表中。
         - 最后一段如果是普通布局，返回其 'content' 列表；如果是 'u' 布局，返回 {'texts':..., 'inputs':..., 'combos':...}；如果是控件，返回其 'content'。
+        - 如果根数据是 NoPaint，直接返回 NoPaint。
         - 路径必须完整且精确，找不到时抛出 KeyError。
 
         参数:
@@ -505,6 +765,8 @@ class UIMLLayout:
             根据路径找到的控件对象、布局的 content 列表，或 'u' 布局的 texts/inputs/combos 字典。
         '''
         data = self.list if data is None else data
+        if data is NoPaint:
+            return NoPaint
         parts = path.split('.')
         if not parts:
             raise ValueError("Empty path")
@@ -522,20 +784,7 @@ class UIMLLayout:
 
             # 最后一段
             if i == len(parts) - 1:
-                if 'direction' in current:
-                    # 普通布局：返回 content 列表
-                    content = current.get('content')
-                    if content is None:
-                        raise ValueError(f"Layout '{part}' has no content")
-                    if not isinstance(content, list):
-                        raise TypeError(f"Layout '{part}' content is not a list")
-                    return content
-                else:
-                    # 控件：返回 content 属性
-                    content = current.get('content')
-                    if content is None:
-                        raise ValueError(f"Widget '{part}' has no content")
-                    return content
+                return self.loader(current, part)
 
             # 不是最后一段，当前节点必须是布局
             if 'direction' not in current:
@@ -545,10 +794,7 @@ class UIMLLayout:
             found = None
 
             # 普通布局从 content 中查找
-            for child in current.get('content', []):
-                if child.get('name') == next_name:
-                    found = child
-                    break
+            found = self.subelement_finder(current, next_name)
 
             if found is None:
                 raise KeyError(f"Child '{next_name}' not found in layout '{part}'")
@@ -557,22 +803,64 @@ class UIMLLayout:
         # 正常流程不会执行到这里
         return None
 
+    def loader(self, current, part):
+        if 'direction' in current: # layout 类型
+            return self.layout_loader(current, part)
+        else:
+            return self.widget_loader(current, part)
+
+    def layout_loader(self, current, part):
+        # 普通布局：返回 content 列表
+        content = current.get('content')
+        if content is None:
+            raise ValueError(f"Layout '{part}' has no content")
+        if not isinstance(content, list):
+            raise TypeError(f"Layout '{part}' content is not a list")
+        return content
+
+    def widget_loader(self, current, part):
+        # 控件：返回 content 属性
+        content = current.get('content')
+        if content is None:
+            raise ValueError(f"Widget '{part}' has no content")
+        return content
+
+    def subelement_finder(self, current, next):
+        # 普通布局从 content 中查找
+        for child in current.get('content', []):
+            if child.get('name') == next:
+                found = child
+                return found
+
     def show(self):   
-        '''显示布局，返回布局对象和类型字符串'''
-        return self.draw_layout()[0]
+        '''显示布局，返回布局对象；不需要绘制时返回 NoPaint。'''
+        result = self.draw_layout()
+        if result is NoPaint:
+            return NoPaint
+        return result[0]
         
     def draw_layout(self, list_content=None):
-        '''绘制布局，返回布局对象和类型字符串'''
+        '''绘制布局，返回布局对象和类型字符串；不需要绘制时返回 NoPaint。'''
         list_content = self.list if list_content is None else list_content
+        if list_content is NoPaint:
+            return NoPaint
         if list_content.get('direction') is not None: # 这是layout类型
             layout_info = self._layout_adding(list_content)
+            if layout_info[0] is NoPaint:
+                return NoPaint # 该布局不需要绘制
             if layout_info[1]:
                 return layout_info[0] # 绘制布局
             else:
                 layout = layout_info[0] # 布局对象
-            return self.add_layout(list_content, layout)
+            result = self.add_layout(list_content, layout)
+            if result is NoPaint:
+                return NoPaint
+            return result
         else: # 这是widget类型
-            return self.extend_widget(list_content)
+            result = self.extend_widget(list_content)
+            if result is NoPaint:
+                return NoPaint
+            return result
         
     def add_layout(self, list_content: Dict, layout: QLayout):
         self._for_loop(list_content, layout) # 递归绘制子布局
@@ -582,6 +870,8 @@ class UIMLLayout:
     def _for_loop(self, list_content, layout):
         for item in list_content['content']:
             widget = self.draw_layout(item)
+            if widget is NoPaint:
+                continue # 该节点不绘制
             if widget[1] == 'widget':
                 func = layout.addWidget
             elif widget[1] == 'layout':
@@ -616,32 +906,26 @@ class UIMLLayout:
         '''
         return (widget[0], ), {}
     
-    def return_layout(layout):
+    def return_layout(self, layout):
         '''
         返回布局对象和类型字符串，可以在不复制draw_layout()函数的情况下，直接在原布局上添加加载时代码
         参数:
             layout: 布局对象
         返回:
-            返回一个元组，内容自定义。
+            返回一个元组，内容自定义；返回 NoPaint 表示该布局不绘制。
         '''
         return layout, 'layout' # 返回布局对象和类型字符串
     
     def extend_layout(self, list_info):
-        '''扩展布局，可以在不复制draw_layout()函数的情况下，直接在原布局上添加加载时代码'''
-        WidgetError.direction_error() # 默认这里抛出错误，因为widget类型没有direction属性
+        '''扩展布局，可以在不复制draw_layout()函数的情况下，直接在原布局上添加加载时代码；返回 NoPaint 表示该布局不绘制'''
+        UIMLException.direction_error(list_info['direction'].lower()) # 默认这里抛出错误，因为widget类型没有direction属性
         
     def extend_widget(self, widget_info):
-        '''扩展控件，可以在不复制draw_layout()函数的情况下，直接在原控件上添加加载时代码'''
+        '''扩展控件，可以在不复制draw_layout()函数的情况下，直接在原控件上添加加载时代码；返回 NoPaint 表示该控件不绘制'''
         return widget_info['content'], 'widget'
             
-class WidgetError:
+class UIMLException(Exception):
     @staticmethod
-    def direction_error():
+    def direction_error(direction):
         '''错误方案：在widget类型中找不到direction属性时，抛出错误。可以自定义添加函数，如替换变量、函数调用等。'''
-        raise ValueError('Direction error: cannot find direction attribute in widget type')
-
-set_namespace(
-    default_replacer, default_layout_parser, default_widget_parser, 
-    namespace_parser_func=load_namespace, reverse=False, 
-    enable_value_convert=False, is_debug=False
-) # 设置默认解析函数
+        raise UIMLException(f'Cannot load direction "{direction}" in class uiml::layout')

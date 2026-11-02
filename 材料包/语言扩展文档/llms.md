@@ -1,0 +1,557 @@
+# Visual Studio Code
+
+> Visual Studio Code is a free, lightweight, and extensible code editor available for Windows, macOS, and Linux. It features built-in support for JavaScript, TypeScript, and Node.js, GitHub Copilot AI assistance for code completion, chat, and agentic workflows, an extensive extension marketplace, and remote development capabilities.
+
+- Official website: https://code.visualstudio.com
+- VS Code source code: https://github.com/microsoft/vscode
+- Extension Marketplace: https://marketplace.visualstudio.com/vscode
+- Documentation: https://code.visualstudio.com/docs
+- Learn: https://code.visualstudio.com/learn
+- Documentation source: https://github.com/microsoft/vscode-docs
+- Extension API docs: https://code.visualstudio.com/api.md
+
+## Documentation
+
+### Get Started
+
+- [Overview](https://code.visualstudio.com/docs/getstarted/overview.md): Install Visual Studio Code, open a project, and choose a guided path to learn editor basics or complete a task with an AI agent.
+- [Agents Quickstart](https://code.visualstudio.com/docs/agents/quickstart.md): Build and validate a web app with an AI agent in VS Code, then review and recover changes.
+- [Editor Tutorial](https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial.md): Create, edit, preview, and debug a recipe app in Visual Studio Code, then explore extensions, settings, and Git.
+- [Intro Videos](https://code.visualstudio.com/docs/getstarted/introvideos.md): Watch introductory videos for Visual Studio Code on the official VS Code YouTube channel.
+
+### AI in VS Code
+
+- [Overview](https://code.visualstudio.com/docs/agents/overview.md): Choose AI workflows, models, and agents in VS Code, from inline suggestions to remote sessions.
+- [Find a Guide](https://code.visualstudio.com/docs/agents/guides/overview.md): Find agent tutorials and guides for VS Code by task, from a first app to testing and project workflows.
+- [Set Up GitHub Copilot](https://code.visualstudio.com/docs/setup/copilot.md): Set up GitHub Copilot in VS Code, understand billing and data use, and manage your account.
+- [Agents Quickstart](https://code.visualstudio.com/docs/agents/quickstart.md): Build and validate a web app with an AI agent in VS Code, then review and recover changes.
+- [Agents Tutorial](https://code.visualstudio.com/docs/agents/agents-tutorial.md): Build an app with AI agents in VS Code and learn editor, browser, and source control workflows.
+- [Cloud Continuity Tutorial](https://code.visualstudio.com/docs/agents/cloud-continuity-tutorial.md): Explore a private repository in a cloud session, then continue the same session from a terminal with Copilot CLI.
+- [Best Practices](https://code.visualstudio.com/docs/agents/best-practices.md): Use AI effectively in VS Code by choosing the right workflow, writing focused prompts, and reviewing results.
+- [Inline Suggestions](https://code.visualstudio.com/docs/editing/ai-powered-suggestions.md): Get AI-powered ghost text completions and next edit suggestions in VS Code.
+- [Chat View](https://code.visualstudio.com/docs/agents/run/chat-view.md): Use AI beside your code in the Chat view, ask questions, run agents, and choose a layout.
+- [Agents Window](https://code.visualstudio.com/docs/agents/run/agents-window.md): Start and manage parallel agent sessions, review changes, and finish pull requests in the Agents window.
+- [Inline Chat & Quick Chat](https://code.visualstudio.com/docs/chat/inline-chat.md): Use inline chat and Quick Chat in Visual Studio Code for focused edits, terminal help, and short AI conversations.
+- [Use Chat](https://code.visualstudio.com/docs/chat/chat-overview.md): Use chat in VS Code to ask about code, send requests, add context, and review AI-generated changes.
+- [Canvases](https://code.visualstudio.com/docs/agents/run/canvases.md): Collaborate with agents through interactive canvases in VS Code. Find, open, and manage canvas extensions.
+- [Add Prompt Context](https://code.visualstudio.com/docs/chat/copilot-chat-context.md): Add files, symbols, images, browser content, and other context to AI prompts in Visual Studio Code for more relevant responses.
+- [Review & Revert Changes](https://code.visualstudio.com/docs/agents/run/review-code-edits.md): Review and undo agent edits in Visual Studio Code with working sets, diffs, and checkpoints.
+- [Configure the Agents Window](https://code.visualstudio.com/docs/agents/run/agents-window-configuration.md): Configure accounts, models, layout, settings, extensions, and editors in the Agents window.
+- [Plan Work](https://code.visualstudio.com/docs/agents/run/planning.md): Create and review implementation plans with GitHub Copilot in VS Code.
+- [Use Tools](https://code.visualstudio.com/docs/agents/run/tools.md): Use agent tools in VS Code to inspect code, run commands, control desktop apps, and manage approvals.
+- [Browser Tools](https://code.visualstudio.com/docs/agents/run/browser-tools.md): Use browser tools with agents in VS Code to inspect web apps, test user flows, and fix issues.
+- [Subagents](https://code.visualstudio.com/docs/agents/run/subagents.md): Delegate focused tasks to context-isolated subagents in VS Code and review results in the main chat.
+- [Automations](https://code.visualstudio.com/docs/agents/run/automations.md): Automate routine agent tasks locally or in GitHub from the Agents window, with schedules, repository triggers, and run history.
+- [Manage Sessions](https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions.md): Find, continue, organize, and finish agent sessions in VS Code without losing track of ongoing work.
+- [Memory](https://code.visualstudio.com/docs/agents/run/memory.md): Use cloud-backed and local memory in VS Code to retain coding preferences and repository knowledge.
+- [Artifacts](https://code.visualstudio.com/docs/agents/run/artifacts.md): View and manage artifacts, references, screenshots, plans, and other agent session resources in Visual Studio Code.
+- [Approvals & Permissions](https://code.visualstudio.com/docs/agents/run/approvals.md): Manage agent permission levels, tool approvals, terminal auto-approval, and sandboxing in VS Code.
+- [Agent Sandboxing](https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md): Configure file system and network isolation for Copilot agents and troubleshoot sandbox failures.
+- [AI Security](https://code.visualstudio.com/docs/agents/run/security.md): Protect development environments when using AI agents and MCP servers in VS Code with approvals and sandboxing.
+- [Choose and Configure Models](https://code.visualstudio.com/docs/agent-customization/language-models.md): Configure chat, inline, and voice models in VS Code. Use your own API key or run models on your device.
+- [Choose an Agent Harness](https://code.visualstudio.com/docs/agents/run/agent-harnesses.md): Compare agent harnesses and built-in agents in Visual Studio Code, select one for a session, and review provider requirements.
+- [Compare Model Results](https://code.visualstudio.com/docs/agents/run/compare-models.md): Compare model responses and code changes side by side in the Agents window, then continue with the strongest result.
+- [Overview](https://code.visualstudio.com/docs/agent-customization/overview.md): Install, adapt, and create agent customizations in VS Code for your coding workflows.
+- [Plugins](https://code.visualstudio.com/docs/agent-customization/agent-plugins.md): Install and manage agent plugins in VS Code.
+- [Agent Skills](https://code.visualstudio.com/docs/agent-customization/agent-skills.md): Find, adapt, and create Agent Skills in VS Code for reusable workflows with supported agents.
+- [Instructions](https://code.visualstudio.com/docs/agent-customization/custom-instructions.md): Create custom instructions in VS Code that align AI responses with project standards and development practices.
+- [Custom Agents](https://code.visualstudio.com/docs/agent-customization/custom-agents.md): Create and manage custom agents in VS Code for specialized development roles, tools, and workflows.
+- [Copilot Connectors](https://code.visualstudio.com/docs/agent-customization/copilot-connectors.md): Connect external services to Copilot without server setup, use their tools, and manage connections.
+- [Add MCP Servers](https://code.visualstudio.com/docs/agent-customization/mcp-servers.md): Connect MCP servers in VS Code to give agents external tools, then verify the first tool call.
+- [Manage MCP Servers](https://code.visualstudio.com/docs/agents/run/manage-mcp-servers.md): Edit, share, stop, and troubleshoot MCP servers in Visual Studio Code, with guidance on trust and remote environments.
+- [Hooks](https://code.visualstudio.com/docs/agent-customization/hooks.md): Configure Copilot hooks for personal and shared workflows in VS Code.
+- [Prompt Files](https://code.visualstudio.com/docs/agent-customization/prompt-files.md): Use prompt files in VS Code for reusable Local harness workflows, or migrate them to agent skills.
+- [Migrate Existing Customizations](https://code.visualstudio.com/docs/agent-customization/migrate-customizations.md): Migrate agent customizations and resolve harness compatibility gaps in VS Code.
+- [Continue a Session](https://code.visualstudio.com/docs/agents/run/sessions/manage-sessions.md): Find, continue, organize, and finish agent sessions in VS Code without losing track of ongoing work.
+- [Remote Agent Sessions](https://code.visualstudio.com/docs/agents/run/remote-agent-sessions.md): Connect to and manage agent sessions through GitHub Environments, SSH, or dev tunnels in VS Code.
+- [Cloud Sessions](https://code.visualstudio.com/docs/agents/run/cloud-sandbox-sessions.md): Run and continue cloud sessions from VS Code without keeping your development machine online.
+- [Session History](https://code.visualstudio.com/docs/agents/run/sessions/session-history.md): Save, search, and share session history in Visual Studio Code with exports, sync, and privacy controls.
+- [Find a Guide](https://code.visualstudio.com/docs/agents/guides/overview.md): Find agent tutorials and guides for VS Code by task, from a first app to testing and project workflows.
+- [Explore a Codebase](https://code.visualstudio.com/docs/agents/guides/explore-a-codebase.md): Explore a codebase with an agent in VS Code, trace a behavior, and verify explanations against source code.
+- [Add a Feature](https://code.visualstudio.com/docs/agents/guides/add-a-feature.md): Add a feature to an existing project with an agent in VS Code, from a reviewed plan to a tested change.
+- [Fix a Bug](https://code.visualstudio.com/docs/agents/guides/fix-a-bug-with-agents.md): Fix a pagination bug in a Node.js API with an AI agent in VS Code by reproducing it, adding regression tests, and reviewing the fix.
+- [Refactor Safely](https://code.visualstudio.com/docs/agents/guides/refactor-safely.md): Refactor code with an agent in VS Code while preserving behavior through focused changes and regression checks.
+- [Add Tests](https://code.visualstudio.com/docs/agents/guides/test-code-with-ai.md): Add and run tests for existing code with AI in Visual Studio Code, then review assertions, failures, and coverage.
+- [Test Web Apps](https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide.md): Build and validate a web app with AI agents and browser tools in VS Code.
+- [Run Parallel Tasks](https://code.visualstudio.com/docs/agents/guides/delegate-two-tasks.md): Delegate two independent agent tasks in VS Code, review isolated changes, and integrate and test the result.
+- [Get Back on Track](https://code.visualstudio.com/docs/agents/guides/get-agent-back-on-track.md): Recover an AI agent session in VS Code by steering requests, restoring checkpoints, and resetting context.
+- [Adapt Agents to Your Project](https://code.visualstudio.com/docs/agents/guides/customize-copilot-guide.md): Configure project instructions, skills, and custom agents for multiple harnesses in VS Code.
+- [Context Engineering](https://code.visualstudio.com/docs/agents/guides/context-engineering-guide.md): Learn how to implement context engineering using VS Code's built-in AI features.
+- [Test-Driven Development](https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide.md): Build a Local TDD workflow in VS Code with custom agents, handoffs, and instructions.
+- [Jupyter Notebooks](https://code.visualstudio.com/docs/agents/guides/notebooks-with-ai.md): Create, edit, run, and analyze Jupyter notebooks with AI in Visual Studio Code.
+- [Reduce Credit Usage](https://code.visualstudio.com/docs/agents/guides/optimize-usage.md): Reduce AI credit usage in VS Code with efficient models, scoped tools, and focused context.
+- [Prompt Examples](https://code.visualstudio.com/docs/agents/guides/prompt-examples.md): Use chat prompts in VS Code to explore code, build features, refactor, debug, and test.
+- [Agents](https://code.visualstudio.com/docs/agents/concepts/agents.md): Understand how agents in VS Code use models, context, and tools to complete coding tasks.
+- [How Models Work](https://code.visualstudio.com/docs/agents/concepts/language-models.md): Understand language models in VS Code, including model access, characteristics, context windows, and selection.
+- [Context](https://code.visualstudio.com/docs/agents/concepts/context.md): Understand how AI agents in VS Code use and manage context to produce relevant responses.
+- [Tools](https://code.visualstudio.com/docs/agents/concepts/tools.md): Understand how tools let AI agents act in VS Code, including built-in, MCP, and extension tools.
+- [Sessions and Chats](https://code.visualstudio.com/docs/agents/concepts/sessions.md): Understand sessions and chats in VS Code, and choose when to start a chat, fork, or create a session.
+- [Agent Harnesses](https://code.visualstudio.com/docs/agents/concepts/agent-harnesses.md): Understand agent harnesses, model access, execution environments, and code isolation in VS Code.
+- [Agent Customization](https://code.visualstudio.com/docs/agents/concepts/customization.md): Choose instructions, skills, custom agents, and other customizations for your workflow in VS Code.
+- [Workspace Context](https://code.visualstudio.com/docs/agents/reference/workspace-context.md): Understand how Copilot agents search workspace code, gather context, and work within indexing and exclusion limits.
+- [Trust & Safety](https://code.visualstudio.com/docs/agents/concepts/trust-and-safety.md): Understand approvals, review, sandboxing, and security considerations for AI agents in VS Code.
+- [Cheat Sheet](https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet.md): Choose AI features in VS Code for coding, planning, testing, and reviewing changes.
+- [Tools and Context](https://code.visualstudio.com/docs/agents/reference/tools-reference.md): Look up tools and context references for AI chat in VS Code.
+- [Settings Reference](https://code.visualstudio.com/docs/agents/reference/ai-settings.md): Configure AI features and agents in Visual Studio Code, including chat, agent sessions, dictation, and accessibility settings.
+- [VS Code Pet](https://code.visualstudio.com/docs/agents/reference/chat-pet.md): Customize Blobby, the VS Code pet, with colors, achievements, movement, and chat reactions.
+- [Custom Agent File Reference](https://code.visualstudio.com/docs/agents/reference/custom-agent-file-reference.md): Look up custom agent file syntax, frontmatter fields, defaults, and harness-specific configuration in VS Code.
+- [Agent Plugin Authoring Reference](https://code.visualstudio.com/docs/agents/reference/agent-plugin-reference.md): Package skills, agents, MCP servers, hooks, and automation templates with agent plugins in VS Code.
+- [MCP Configuration](https://code.visualstudio.com/docs/agents/reference/mcp-configuration.md): Configure MCP servers in Visual Studio Code with reference details for file formats, commands, settings, and sandboxing.
+- [Hooks Reference](https://code.visualstudio.com/docs/agents/reference/hooks-reference.md): Review legacy Local hook schemas when migrating to Copilot in VS Code.
+- [OpenTelemetry Monitoring](https://code.visualstudio.com/docs/agents/guides/monitoring-agents.md): Monitor GitHub Copilot agents in VS Code with OpenTelemetry traces, metrics, events, and identity controls.
+- [Agent Host Architecture](https://code.visualstudio.com/docs/agents/concepts/agent-host.md): Understand how the VS Code Agent Host manages sessions, execution environments, and connected clients.
+- [Troubleshooting](https://code.visualstudio.com/docs/agents/agent-troubleshooting/troubleshooting.md): Diagnose GitHub Copilot and agent issues in Visual Studio Code with targeted checks, logs, and network diagnostics.
+- [Debug Chat Interactions](https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view.md): Diagnose agent behavior in Visual Studio Code by inspecting requests, context, tool calls, token usage, and agent flows.
+- [Diagnose Prompt Caching](https://code.visualstudio.com/docs/agents/agent-troubleshooting/cache-explorer.md): Diagnose prompt cache misses with Cache Explorer in Visual Studio Code to investigate token use and latency.
+- [FAQ](https://code.visualstudio.com/docs/agents/agent-troubleshooting/faq.md): Find answers about GitHub Copilot access, usage, chat, agents, inline suggestions, and troubleshooting in Visual Studio Code.
+
+### Editor
+
+- [Overview](https://code.visualstudio.com/docs/editing/getting-started/overview.md): Explore core Visual Studio Code capabilities for editing, debugging, testing, source control, terminal workflows, and editor customization.
+- [Editor Tutorial](https://code.visualstudio.com/docs/editing/getting-started/editor-tutorial.md): Create, edit, preview, and debug a recipe app in Visual Studio Code, then explore extensions, settings, and Git.
+- [User Interface](https://code.visualstudio.com/docs/editing/getting-started/userinterface.md): A quick overview of the Visual Studio Code user interface. Learn about the editor, window management, and special UI to handle source control, extension management, full text search and more.
+- [Tips and Tricks](https://code.visualstudio.com/docs/editing/getting-started/tips-and-tricks.md): Improve productivity in Visual Studio Code with editing, navigation, source control, debugging, and keyboard shortcut tips.
+- [Basic Editing](https://code.visualstudio.com/docs/editing/codebasics.md): Edit code efficiently in Visual Studio Code with multiple cursors, search, formatting, folding, and automatic bracket closing.
+- [IntelliSense](https://code.visualstudio.com/docs/editing/intellisense.md): Learn about Visual Studio Code IntelliSense (intelligent code completion).
+- [Inline Suggestions](https://code.visualstudio.com/docs/editing/ai-powered-suggestions.md): Get AI-powered ghost text completions and next edit suggestions in VS Code.
+- [Smart Actions](https://code.visualstudio.com/docs/editing/copilot-smart-actions.md): Use AI smart actions in VS Code to generate commit messages, rename symbols, and fix errors.
+- [Code Navigation](https://code.visualstudio.com/docs/editing/editingevolved.md): Visual Studio Code is a first class editor - but it's also so much more with features such as IntelliSense and smart code navigation.
+- [Refactoring](https://code.visualstudio.com/docs/editing/refactoring.md): Refactoring source code in Visual Studio Code.
+- [Snippets](https://code.visualstudio.com/docs/editing/userdefinedsnippets.md): It is easy to add code snippets to Visual Studio Code both for your own use or to share with others on the public Extension Marketplace. TextMate .tmSnippets files are supported.
+- [Overview](https://code.visualstudio.com/docs/editing/workspaces/workspaces.md): Learn about Visual Studio Code workspaces
+- [Multi-Root Workspaces](https://code.visualstudio.com/docs/editing/workspaces/multi-root-workspaces.md): You can open and work on multiple project folders in Visual Studio Code with multi-root workspaces.
+- [Workspace Trust](https://code.visualstudio.com/docs/editing/workspaces/workspace-trust.md): Visual Studio Code Workspace Trust folder security
+- [Display Language](https://code.visualstudio.com/docs/configure/locales.md): How to change the display language (locale) of Visual Studio Code.
+- [Layout](https://code.visualstudio.com/docs/configure/custom-layout.md): Customize the Visual Studio Code layout with side bars, panels, editor groups, toolbars, and interface density.
+- [Keyboard Shortcuts](https://code.visualstudio.com/docs/configure/keybindings.md): Customize keyboard shortcuts in Visual Studio Code, including keybinding rules, command arguments, chords, and system-wide shortcuts.
+- [Settings](https://code.visualstudio.com/docs/configure/settings.md): How to modify Visual Studio Code User and Workspace Settings.
+- [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync.md): Sync settings and preferences across devices with Visual Studio Code Settings Sync.
+- [Overview](https://code.visualstudio.com/docs/configure/extensions/extensions.md): Learn how to install extensions from the Visual Studio Marketplace to add features for your programming language, framework, or development workflow to Visual Studio.
+- [Extension Marketplace](https://code.visualstudio.com/docs/configure/extensions/extension-marketplace.md): Find, install, update, and manage Visual Studio Code extensions from the Extension Marketplace.
+- [Extension Runtime Security](https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security.md): Learn about the security measures in place for Visual Studio Code extensions, including permissions, user reliability checks, and Marketplace protections.
+- [Themes](https://code.visualstudio.com/docs/configure/themes.md): Changing the color theme in Visual Studio Code. You can use color themes provided by VS Code, the community or create your own new themes.
+- [Profiles](https://code.visualstudio.com/docs/configure/profiles.md): Create and manage Profiles in Visual Studio Code to customize settings, extensions, and UI layout for different workflows.
+- [Overview](https://code.visualstudio.com/docs/configure/accessibility/accessibility.md): Configure accessibility in Visual Studio Code with screen reader mode, keyboard navigation, visual aids, and audio cues.
+- [Voice Interactions](https://code.visualstudio.com/docs/configure/accessibility/voice.md): Use Voice Mode for spoken agent conversations and built-in dictation for speech input in Visual Studio Code.
+- [Command Line Interface](https://code.visualstudio.com/docs/configure/command-line.md): Launch and configure Visual Studio Code from the command line, and open files, settings, extensions, or agent session drafts with URLs.
+- [Telemetry](https://code.visualstudio.com/docs/configure/telemetry.md): Learn about telemetry collection in Visual Studio Code and how to opt out.
+- [Default Keyboard Shortcuts](https://code.visualstudio.com/docs/reference/default-keybindings.md): Reference of default keyboard shortcuts in Visual Studio Code.
+- [Default Settings](https://code.visualstudio.com/docs/reference/default-settings.md): Default settings in Visual Studio Code.
+- [Substitution Variables](https://code.visualstudio.com/docs/reference/variables-reference.md): Use variable substitution in Visual Studio Code configuration files, including path values that contain spaces.
+- [Tasks Schema](https://code.visualstudio.com/docs/reference/tasks-appendix.md): Additional info for using task runners in Visual Studio Code.
+
+### Source Control
+
+- [Overview](https://code.visualstudio.com/docs/sourcecontrol/overview.md): Explore Git in VS Code and find guides to commits, collaboration, history, and troubleshooting.
+- [Quickstart](https://code.visualstudio.com/docs/sourcecontrol/quickstart.md): Make a first Git commit in Visual Studio Code with a practice project, then optionally publish it online.
+- [Repositories & Remotes](https://code.visualstudio.com/docs/sourcecontrol/repos-remotes.md): Clone, publish, and manage Git remotes in VS Code, and choose when to fetch, pull, push, or sync.
+- [Staging, Commits & Undo](https://code.visualstudio.com/docs/sourcecontrol/staging-commits.md): Review, stage, and commit changes in VS Code, and choose safe ways to undo or discard work.
+- [History & Blame](https://code.visualstudio.com/docs/sourcecontrol/history.md): Inspect Git commits, compare revisions, and find file history and line authorship in Visual Studio Code.
+- [Branches, Stashes & Worktrees](https://code.visualstudio.com/docs/sourcecontrol/branches-worktrees.md): Create and switch Git branches, stash changes, and manage worktrees in Visual Studio Code.
+- [Merge Conflicts](https://code.visualstudio.com/docs/sourcecontrol/merge-conflicts.md): Resolve Git conflicts in VS Code, review the result, and complete or cancel the operation.
+- [Collaborate on GitHub](https://code.visualstudio.com/docs/sourcecontrol/github.md): Manage GitHub pull requests and issues in Visual Studio Code.
+- [Troubleshooting](https://code.visualstudio.com/docs/sourcecontrol/troubleshooting.md): Resolve Git setup, tracking, authentication, and push failures in Visual Studio Code with targeted fixes and Git logs.
+- [FAQ](https://code.visualstudio.com/docs/sourcecontrol/faq.md): Check Git, SSH, and GitHub Enterprise support in Visual Studio Code.
+
+### Terminal
+
+- [Get Started](https://code.visualstudio.com/docs/terminal/getting-started.md): Learn how to get started running shell commands with the integrated terminal in Visual Studio Code.
+- [Terminal Basics](https://code.visualstudio.com/docs/terminal/basics.md): Visual Studio Code has an integrated terminal to enable working in your shell of choice without leaving the editor.
+- [Terminal Profiles](https://code.visualstudio.com/docs/terminal/profiles.md): Visual Studio Code's integrated terminal allows configuring various profiles to make launching various shells easier.
+- [Shell Integration](https://code.visualstudio.com/docs/terminal/shell-integration.md): Visual Studio Code's embedded terminal can integrate with some shells to enhance the capabilities of the terminal.
+- [Appearance](https://code.visualstudio.com/docs/terminal/appearance.md): Customize integrated terminal fonts, colors, cursor, rendering, tabs, and other appearance settings in Visual Studio Code.
+- [Advanced](https://code.visualstudio.com/docs/terminal/advanced.md): Visual Studio Code's integrated terminal has several advanced features.
+
+### Debugging & Testing
+
+- [Debugging](https://code.visualstudio.com/docs/debugtest/debugging.md): Debug applications in Visual Studio Code with breakpoints, step controls, variable inspection, and the Debug Console.
+- [Debug Configuration](https://code.visualstudio.com/docs/debugtest/debugging-configuration.md): Create and customize launch.json configurations in Visual Studio Code for launching, attaching, and multi-target debugging.
+- [Tasks](https://code.visualstudio.com/docs/debugtest/tasks.md): Expand your development workflow with task integration in Visual Studio Code.
+- [Testing](https://code.visualstudio.com/docs/debugtest/testing.md): Run and debug tests in VS Code, inspect coverage, and use optional AI assistance to add tests.
+- [Integrated Browser](https://code.visualstudio.com/docs/debugtest/integrated-browser.md): Preview and debug web apps with the integrated browser in VS Code and configure browser behavior.
+- [Port Forwarding](https://code.visualstudio.com/docs/debugtest/port-forwarding.md): Make your local web services accessible over the internet with Visual Studio Code
+- [Test-Driven Development](https://code.visualstudio.com/docs/agents/guides/test-driven-development-guide.md): Build a Local TDD workflow in VS Code with custom agents, handoffs, and instructions.
+- [Test Web Apps](https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide.md): Build and validate a web app with AI agents and browser tools in VS Code.
+
+### Enterprise
+
+- [Overview](https://code.visualstudio.com/docs/enterprise/overview.md): Configure enterprise policies, extensions, AI access, and network settings for development teams in Visual Studio Code.
+- [Enterprise Policies](https://code.visualstudio.com/docs/enterprise/policies.md): Enterprise policies in Visual Studio Code enable organizations to centrally manage settings for their development teams. This reference details the available policies and how to implement them.
+- [Manage AI Settings](https://code.visualstudio.com/docs/enterprise/manage-ai-settings.md): Manage enterprise AI controls that affect VS Code and Copilot.
+- [Extensions](https://code.visualstudio.com/docs/enterprise/extensions.md): Manage VS Code extensions with allowlists, a private marketplace, and preinstalled extensions.
+- [Telemetry](https://code.visualstudio.com/docs/enterprise/telemetry.md): Learn how to centrally manage VS Code telemetry settings for enterprise environments, including telemetry levels and feedback options.
+- [Updates](https://code.visualstudio.com/docs/enterprise/updates.md): Learn how to centrally manage VS Code automatic updates in enterprise environments, including update modes and deployment strategies.
+
+### Remote
+
+- [Overview](https://code.visualstudio.com/docs/remote/remote-overview.md): Visual Studio Code Remote Development
+- [VS Code for the Web](https://code.visualstudio.com/docs/remote/vscode-web.md): Visual Studio Code for the Web and the vscode.dev URL
+- [SSH](https://code.visualstudio.com/docs/remote/ssh.md): Developing on Remote Machines or VMs using Visual Studio Code Remote Development and SSH
+- [SSH Tutorial](https://code.visualstudio.com/docs/remote/ssh-tutorial.md): Connect over SSH with Visual Studio Code
+- [Tunnels](https://code.visualstudio.com/docs/remote/tunnels.md): Using the Visual Studio Code Remote Tunnels extension
+- [Dev Containers](https://code.visualstudio.com/docs/remote/dev-containers.md): Developing inside a Container using Visual Studio Code Remote Development
+- [WSL](https://code.visualstudio.com/docs/remote/wsl.md): Using Visual Studio Code Remote Development with the Windows Subsystem for Linux (WSL)
+- [WSL Tutorial](https://code.visualstudio.com/docs/remote/wsl-tutorial.md): Work in Windows Subsystem for Linux with Visual Studio Code
+- [GitHub Codespaces](https://code.visualstudio.com/docs/remote/codespaces.md): Using GitHub Codespaces
+- [VS Code Server](https://code.visualstudio.com/docs/remote/vscode-server.md): Using Visual Studio Code Server
+- [Linux Prerequisites](https://code.visualstudio.com/docs/remote/linux.md): Linux Prerequisites for VS Code Remote - SSH, Dev Containers, and WSL extensions
+- [Tips and Tricks](https://code.visualstudio.com/docs/remote/troubleshooting.md): Visual Studio Code Remote Development troubleshooting tips and tricks for SSH, Containers, and the Windows Subsystem for Linux (WSL)
+- [FAQ](https://code.visualstudio.com/docs/remote/faq.md): Visual Studio Code Remote Development Frequently Asked Questions (FAQ) for SSH, Containers, and WSL
+
+### Advanced Setup
+
+- [GitHub Copilot Setup](https://code.visualstudio.com/docs/setup/copilot.md): Set up GitHub Copilot in VS Code, understand billing and data use, and manage your account.
+- [Linux](https://code.visualstudio.com/docs/setup/linux.md): Install Visual Studio Code on Linux with Debian, RPM, Snap, Arch, or Nix package options.
+- [macOS](https://code.visualstudio.com/docs/setup/mac.md): Install Visual Studio Code on macOS, add code to PATH, and optionally install GitHub Copilot CLI.
+- [Windows](https://code.visualstudio.com/docs/setup/windows.md): Install Visual Studio Code on Windows, choose User or System setup, and configure Windows developer tools.
+- [Raspberry Pi](https://code.visualstudio.com/docs/setup/raspberry-pi.md): Get Visual Studio Code up and running on Raspberry Pi OS.
+- [Network](https://code.visualstudio.com/docs/setup/network.md): Setup VS Code's Network Connection.
+- [Portable Mode](https://code.visualstudio.com/docs/setup/portable.md): Visual Studio Code supports a Portable mode that enables moving your installation and related data to a different location.
+- [Additional Components](https://code.visualstudio.com/docs/setup/additional-components.md): Setting up additional components to use with Visual Studio Code.
+- [Uninstall](https://code.visualstudio.com/docs/setup/uninstall.md): Uninstall Visual Studio Code and clean up.
+
+### Container Tools
+
+- [Overview](https://code.visualstudio.com/docs/containers/overview.md): Tools for developing and debugging with containers, using Visual Studio Code.
+- [Node.js](https://code.visualstudio.com/docs/containers/quickstart-node.md): Develop, build, and debug a Node.js app in a container, using Visual Studio Code.
+- [Python](https://code.visualstudio.com/docs/containers/quickstart-python.md): Develop, build, and debug a Python app in a container, using Visual Studio Code.
+- [ASP.NET Core](https://code.visualstudio.com/docs/containers/quickstart-aspnet-core.md): Develop, build, and debug an ASP.NET Core app in a Docker container, using Visual Studio Code.
+- [Debug](https://code.visualstudio.com/docs/containers/debug-common.md): Debug an app running in a container, using Visual Studio Code.
+- [Docker Compose](https://code.visualstudio.com/docs/containers/docker-compose.md): Develop a multi-container app running in containers using Docker Compose and Visual Studio Code.
+- [Registries](https://code.visualstudio.com/docs/containers/quickstart-container-registries.md): Work with container registries in Visual Studio Code
+- [Deploy to Azure](https://code.visualstudio.com/docs/containers/app-service.md): Using Visual Studio Code, build a container image for your application, push the image to a container registry, and deploy to Azure App Service or Azure Container Apps.
+- [Choose a Dev Environment](https://code.visualstudio.com/docs/containers/choosing-dev-environment.md): Guidance on choosing remote or local environments for developing and debugging containerized apps, using Visual Studio Code.
+- [Customize](https://code.visualstudio.com/docs/containers/reference.md): Reference for Docker build and Docker run tasks and properties in the Visual Studio Code Container Tools extension.
+- [Develop with Kubernetes](https://code.visualstudio.com/docs/containers/bridge-to-kubernetes.md): Learn how to use Bridge to Kubernetes.
+- [Tips and Tricks](https://code.visualstudio.com/docs/containers/troubleshooting.md): Visual Studio Code container development troubleshooting tips and tricks
+
+### Data Science
+
+- [Overview](https://code.visualstudio.com/docs/datascience/overview.md): Doing Data Science in Visual Studio Code.
+- [Jupyter Notebooks](https://code.visualstudio.com/docs/datascience/jupyter-notebooks.md): Working with Jupyter Notebooks in Visual Studio Code.
+- [Data Science Tutorial](https://code.visualstudio.com/docs/datascience/data-science-tutorial.md): Python data science tutorial demonstrating the use of common data science and machine learning libraries with Visual Studio code Jupyter Notebook support.
+- [Python Interactive](https://code.visualstudio.com/docs/datascience/python-interactive.md): Working with Jupyter code cells in the Python Interactive window
+- [Data Wrangler Quick Start](https://code.visualstudio.com/docs/datascience/data-wrangler-quick-start.md): A quick start guide to get you up and running with the Data Wrangler extension in Visual Studio Code.
+- [Data Wrangler](https://code.visualstudio.com/docs/datascience/data-wrangler.md): Full documentation on working with the Data Wrangler extension in Visual Studio Code.
+- [PyTorch Support](https://code.visualstudio.com/docs/datascience/pytorch-support.md): This topic highlights some of the PyTorch features available within Visual Studio Code.
+- [Azure Machine Learning](https://code.visualstudio.com/docs/datascience/azure-machine-learning.md): Learn how to build machine learning applications in Azure Machine Learning using the Visual Studio Code extension
+- [Manage Jupyter Kernels](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management.md): Descriptions of kernel selection options and tutorials on managing different types of kernels when working with Jupyter Notebooks in Visual Studio Code.
+- [Jupyter Notebooks on the Web](https://code.visualstudio.com/docs/datascience/notebooks-web.md): Working with Jupyter notebooks on the web with Visual Studio Code.
+- [Data Science in Microsoft Fabric](https://code.visualstudio.com/docs/datascience/microsoft-fabric-quickstart.md): Get started with Microsoft Fabric extensions for Visual Studio Code to develop data engineering and analytics solutions
+
+### Intelligent Apps
+
+- [Foundry Toolkit Overview](https://code.visualstudio.com/docs/intelligentapps/overview.md): Build, test, and deploy AI apps and agents with Foundry Toolkit for Visual Studio Code.
+- [Foundry Toolkit Copilot Tools](https://code.visualstudio.com/docs/intelligentapps/copilot-tools.md): Use Foundry Toolkit tools and skills with GitHub Copilot to choose models, develop agents, and prepare deployment.
+- [Create Agents](https://code.visualstudio.com/docs/intelligentapps/create-agents.md): Choose a prompt or hosted agent path in Foundry Toolkit for Visual Studio Code, then open its setup guide.
+- [Models](https://code.visualstudio.com/docs/intelligentapps/models.md): Discover, connect, and deploy local and remote models in Foundry Toolkit, and choose a model source for application development.
+- [Playground](https://code.visualstudio.com/docs/intelligentapps/playground.md): Test prompts with text and image models in Foundry Toolkit, compare chat responses, generate images, and reuse model client code.
+- [Agent Builder](https://code.visualstudio.com/docs/intelligentapps/agentbuilder.md): Create, test, and version prompt agents in Foundry Toolkit with Agent Builder. Add tools, review conversations, and generate client code.
+- [Agent Inspector](https://code.visualstudio.com/docs/intelligentapps/agent-inspector.md): Debug local agents with Agent Inspector in Foundry Toolkit, inspect responses and tool calls, and export diagnostic events.
+- [Hosted Agents (Preview)](https://code.visualstudio.com/docs/intelligentapps/hosted-agents.md): Build, test, and deploy a hosted agent with Foundry Toolkit for VS Code.
+- [Evaluation](https://code.visualstudio.com/docs/intelligentapps/evaluation.md): Evaluate models, prompts, and agents with Foundry Toolkit. Run dataset and pytest evaluations, compare results, and review Foundry evaluation runs.
+- [Optimizations](https://code.visualstudio.com/docs/intelligentapps/optimizations.md): Compare and apply optimization workflows for prompt instructions, hosted agents, and local models in Microsoft Foundry Toolkit.
+- [Tools and Toolboxes](https://code.visualstudio.com/docs/intelligentapps/tool-catalog.md): Manage tools, connections, and Toolboxes in Visual Studio Code with Foundry Toolkit. Create skills and connect agents.
+- [Fine-Tuning (Automated Setup)](https://code.visualstudio.com/docs/intelligentapps/finetune.md): Learn how to fine-tune the Phi Silica model in Azure using a custom dataset, download the resulting LoRA adapter, and perform inference with the adapter.
+- [Fine-Tuning (Project Template)](https://code.visualstudio.com/docs/intelligentapps/finetune-legacy.md): Use custom dataset to fine-tune a generative AI model in the Azure cloud or locally with GPUs. Deploy the fine-tuned model to the Azure cloud or download incremental files from fine-tuned model.
+- [Model Conversion](https://code.visualstudio.com/docs/intelligentapps/modelconversion.md): Model Conversion Quickstart in Foundry Toolkit.
+- [Tracing](https://code.visualstudio.com/docs/intelligentapps/tracing.md): Collect local traces and inspect hosted-agent telemetry in Foundry Toolkit to diagnose model calls, tool execution, and latency.
+- [Profiling (Windows ML)](https://code.visualstudio.com/docs/intelligentapps/profiling.md): Profiling Quickstart in Foundry Toolkit.
+- [FAQ](https://code.visualstudio.com/docs/intelligentapps/faq.md): Find answers to frequently asked questions (FAQ) using Foundry Toolkit. Get troubleshooting recommendations.
+- [File Structure](https://code.visualstudio.com/docs/intelligentapps/reference/FileStructure.md): Model Conversion reference about project structure.
+- [Manual Model Conversion](https://code.visualstudio.com/docs/intelligentapps/reference/ManualModelConversion.md): Model Conversion reference about manual model conversion.
+- [Manual Model Conversion on GPU](https://code.visualstudio.com/docs/intelligentapps/reference/ManualConversionOnGPU.md): Model Conversion reference about manual model conversion for LLM models using GPU.
+- [Setup Environment Without Foundry Toolkit](https://code.visualstudio.com/docs/intelligentapps/reference/SetupWithoutAITK.md): Model Conversion reference about setup environment.
+- [Update Project](https://code.visualstudio.com/docs/intelligentapps/reference/UpdateModelProject.md): Guidance on updating a model project in Foundry Toolkit Model Conversion tool.
+- [Template Project](https://code.visualstudio.com/docs/intelligentapps/reference/TemplateProject.md): Model Conversion reference about setup template project.
+- [Migrating from Visualizer to Agent Inspector](https://code.visualstudio.com/docs/intelligentapps/reference/migrate-from-visualizer.md): Migrate from Local Agent Playground and Local Visualizer to Agent Inspector in Foundry Toolkit for unified debugging, workflow visualization, and code navigation.
+
+### Azure
+
+- [Overview](https://code.visualstudio.com/docs/azure/overview.md): Visual Studio Code Azure Extensions
+- [Getting Started](https://code.visualstudio.com/docs/azure/gettingstarted.md): Azure Tools for Visual Studio Code Getting Started guide for developers
+- [Resources View](https://code.visualstudio.com/docs/azure/resourcesextension.md): Azure Resources for Visual Studio Code
+- [Deployment](https://code.visualstudio.com/docs/azure/deployment.md): Visual Studio Code Azure Tutorials
+- [VS Code for the Web - Azure](https://code.visualstudio.com/docs/azure/vscodeforweb.md): VS Code for the Web - Azure
+- [Containers](https://code.visualstudio.com/docs/azure/containers.md): Working with containers in Visual Studio Code.
+- [Azure Kubernetes Service](https://code.visualstudio.com/docs/azure/aksextensions.md): Working with AKS tools and diagnostics in Visual Studio Code
+- [Kubernetes](https://code.visualstudio.com/docs/azure/kubernetes.md): Working with Kubernetes in Visual Studio Code
+- [MongoDB](https://code.visualstudio.com/docs/azure/mongodb.md): Working with MongoDB in Visual Studio Code
+- [Remote Debugging for Node.js](https://code.visualstudio.com/docs/azure/remote-debugging.md): Azure Remote Debugging for Node.js with Visual Studio Code
+
+### Dev Containers
+
+- [Overview](https://code.visualstudio.com/docs/devcontainers/containers.md): Developing inside a Container using Visual Studio Code Remote Development
+- [Tutorial](https://code.visualstudio.com/docs/devcontainers/tutorial.md): Get started with development Containers in Visual Studio Code
+- [Attach to Container](https://code.visualstudio.com/docs/devcontainers/attach-container.md): Attach to a running container using Visual Studio Code Remote Development
+- [Create Dev Container](https://code.visualstudio.com/docs/devcontainers/create-dev-container.md): Create a development container using Visual Studio Code Remote Development
+- [Advanced Containers](https://code.visualstudio.com/docs/devcontainers/containers-advanced.md): Advanced setup for using the VS Code Dev Containers extension
+- [devcontainer.json](https://code.visualstudio.com/docs/devcontainers/devcontainerjson-reference.md): devcontainer.json reference
+- [Dev Container CLI](https://code.visualstudio.com/docs/devcontainers/devcontainer-cli.md): Documentation on using the development container (dev container) command-line interface
+- [Tips and Tricks](https://code.visualstudio.com/docs/devcontainers/tips-and-tricks.md): Visual Studio Code Remote Development troubleshooting tips and tricks for Dev Containers
+- [FAQ](https://code.visualstudio.com/docs/devcontainers/faq.md): Visual Studio Code troubleshooting tips and tricks for Dev Containers
+
+### Language Support
+
+- [JavaScript](https://code.visualstudio.com/docs/languages/javascript.md): Get the best out of Visual Studio Code for JavaScript development
+- [JSON](https://code.visualstudio.com/docs/languages/json.md): Edit JSON files in Visual Studio Code
+- [HTML](https://code.visualstudio.com/docs/languages/html.md): Get the best out of Visual Studio Code for HTML development
+- [Emmet](https://code.visualstudio.com/docs/languages/emmet.md): Using Emmet abbreviations inside Visual Studio Code.
+- [CSS, SCSS and Less](https://code.visualstudio.com/docs/languages/css.md): Find out how Visual Studio Code can support your CSS, SCSS and Less development.
+- [TypeScript](https://code.visualstudio.com/docs/languages/typescript.md): Get the best out of editing TypeScript with Visual Studio Code.
+- [Markdown](https://code.visualstudio.com/docs/languages/markdown.md): Get the best out of Visual Studio Code for Markdown
+- [PowerShell](https://code.visualstudio.com/docs/languages/powershell.md): Learn about using PowerShell in Visual Studio Code
+- [C++](https://code.visualstudio.com/docs/languages/cpp.md): Find out how to get the best out of Visual Studio Code and C++.
+- [Java](https://code.visualstudio.com/docs/languages/java.md): Learn about Visual Studio Code editor features (code completion, debugging, snippets, linting) for Java.
+- [PHP](https://code.visualstudio.com/docs/languages/php.md): Learn about Visual Studio Code editor features (syntax highlighting, snippets, linting) and extensions for PHP.
+- [Python](https://code.visualstudio.com/docs/languages/python.md): Learn about Visual Studio Code as a Python IDE (code completion, debugging, linting).
+- [Julia](https://code.visualstudio.com/docs/languages/julia.md): Learn about working with the Julia programming language in Visual Studio Code.
+- [R](https://code.visualstudio.com/docs/languages/r.md): Learn about working with the R programming language in Visual Studio Code.
+- [Ruby](https://code.visualstudio.com/docs/languages/ruby.md): Learn about Visual Studio Code editor features (code completion, debugging, snippets, linting) for Ruby.
+- [Rust](https://code.visualstudio.com/docs/languages/rust.md): Learn about Visual Studio Code editor features (code completion, debugging, snippets, linting) for Rust.
+- [Go](https://code.visualstudio.com/docs/languages/go.md): Learn about Visual Studio Code editor features (code completion, debugging, snippets, linting) for Go.
+- [T-SQL](https://code.visualstudio.com/docs/languages/tsql.md): Learn about Visual Studio Code editor features (code completion, debugging, snippets, linting) for Transact-SQL.
+- [C#](https://code.visualstudio.com/docs/languages/csharp.md): Find out how to get the best out of Visual Studio Code and C#.
+- [.NET](https://code.visualstudio.com/docs/languages/dotnet.md): Get started writing and debugging .NET apps with Visual Studio Code.
+- [Swift](https://code.visualstudio.com/docs/languages/swift.md): Learn about Visual Studio Code editor features (code completion, debugging, testing) for Swift.
+
+### Node.js / JavaScript
+
+- [Working with JavaScript](https://code.visualstudio.com/docs/nodejs/working-with-javascript.md): Working with JavaScript in Visual Studio Code
+- [Node.js Tutorial](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial.md): The Visual Studio Code editor has great support for writing and debugging Node.js applications. This tutorial takes you from Hello World to a full Express web application.
+- [Node.js Debugging](https://code.visualstudio.com/docs/nodejs/nodejs-debugging.md): The Visual Studio Code editor includes Node.js debugging support. Set breakpoints, step-in, inspect variables and more.
+- [Deploy Node.js Apps](https://code.visualstudio.com/docs/nodejs/nodejs-deployment.md): Node.js Deployment to Azure with Visual Studio Code
+- [Browser Debugging](https://code.visualstudio.com/docs/nodejs/browser-debugging.md): The Visual Studio Code editor includes browser debugging support. Set breakpoints, step-in, inspect variables and more.
+- [Angular Tutorial](https://code.visualstudio.com/docs/nodejs/angular-tutorial.md): Angular TypeScript tutorial showing IntelliSense, debugging, and code navigation support in the Visual Studio Code editor.
+- [React Tutorial](https://code.visualstudio.com/docs/nodejs/reactjs-tutorial.md): React JavaScript tutorial showing IntelliSense, debugging, and code navigation support in the Visual Studio Code editor.
+- [Vue Tutorial](https://code.visualstudio.com/docs/nodejs/vuejs-tutorial.md): Vue JavaScript tutorial showing IntelliSense, debugging, and code navigation support in the Visual Studio Code editor.
+- [Debugging Recipes](https://code.visualstudio.com/docs/nodejs/debugging-recipes.md): Learn more about how to setup debugging in Visual Studio Code with debugging recipes
+- [Performance Profiling](https://code.visualstudio.com/docs/nodejs/profiling.md): Learn more about profiling your JavaScript performance in the Visual Studio Code editor.
+- [Extensions](https://code.visualstudio.com/docs/nodejs/extensions.md): Learn more about installing and integrating JavaScript and Node.js extensions in the Visual Studio Code editor.
+
+### TypeScript
+
+- [Tutorial](https://code.visualstudio.com/docs/typescript/typescript-tutorial.md): TypeScript tutorial with Visual Studio Code.
+- [Transpiling](https://code.visualstudio.com/docs/typescript/typescript-transpiling.md): Learn about TypeScript transpiling with Visual Studio Code.
+- [Editing](https://code.visualstudio.com/docs/typescript/typescript-editing.md): Learn about TypeScript editing with Visual Studio Code.
+- [Refactoring](https://code.visualstudio.com/docs/typescript/typescript-refactoring.md): Learn about TypeScript refactorings supported by Visual Studio Code.
+- [Debugging](https://code.visualstudio.com/docs/typescript/typescript-debugging.md): TypeScript debugging with Visual Studio Code.
+
+### Python
+
+- [Quick Start](https://code.visualstudio.com/docs/python/python-quick-start.md): A quick start guide to get you up and coding with the Python extension in Visual Studio Code.
+- [Tutorial](https://code.visualstudio.com/docs/python/python-tutorial.md): A Python hello world tutorial using the Python extension in Visual Studio Code
+- [Run Python Code](https://code.visualstudio.com/docs/python/run.md): Running Python Code in Visual Studio Code
+- [Editing](https://code.visualstudio.com/docs/python/editing.md): Editing Python in Visual Studio Code
+- [Linting](https://code.visualstudio.com/docs/python/linting.md): Linting Python in Visual Studio Code
+- [Formatting](https://code.visualstudio.com/docs/python/formatting.md): Formatting Python in Visual Studio Code
+- [Debugging](https://code.visualstudio.com/docs/python/debugging.md): Details on configuring the Visual Studio Code debugger for different Python applications.
+- [Environments](https://code.visualstudio.com/docs/python/environments.md): Configuring Python Environments in Visual Studio Code
+- [Testing](https://code.visualstudio.com/docs/python/testing.md): Testing Python in Visual Studio Code including the Test Explorer
+- [Python Interactive](https://code.visualstudio.com/docs/python/jupyter-support-py.md): Working with Jupyter code cells in the Python Interactive window
+- [Django Tutorial](https://code.visualstudio.com/docs/python/tutorial-django.md): Python Django tutorial demonstrating IntelliSense, code navigation, and debugging for both code and templates in Visual Studio Code, the best Python IDE.
+- [FastAPI Tutorial](https://code.visualstudio.com/docs/python/tutorial-fastapi.md): Python FastAPI tutorial showing IntelliSense and debugging support in Visual Studio Code, the best Python IDE.
+- [Flask Tutorial](https://code.visualstudio.com/docs/python/tutorial-flask.md): Python Flask tutorial showing IntelliSense, debugging, and code navigation support in Visual Studio Code, the best Python IDE.
+- [Create Containers](https://code.visualstudio.com/docs/python/tutorial-create-containers.md): How to create containers for Python web apps using the VS Code Container Tools extension
+- [Deploy Python Apps](https://code.visualstudio.com/docs/python/python-on-azure.md): How to deploy Python applications to Azure with Visual Studio Code
+- [Python in the Web](https://code.visualstudio.com/docs/python/python-web.md): Run and Debug Python code in the Web.
+- [Settings Reference](https://code.visualstudio.com/docs/python/settings-reference.md): Settings Reference for the Python extension in Visual Studio Code
+
+### Java
+
+- [Getting Started](https://code.visualstudio.com/docs/java/java-tutorial.md): Java tutorial showing basic Java language support in the Visual Studio Code editor
+- [Navigate and Edit](https://code.visualstudio.com/docs/java/java-editing.md): Navigate and edit Java Source Code in Visual Studio Code
+- [Refactoring](https://code.visualstudio.com/docs/java/java-refactoring.md): Java code refactoring and Source Actions for Visual Studio Code
+- [Formatting and Linting](https://code.visualstudio.com/docs/java/java-linting.md): Formatting, linting, and code analysis for Java in Visual Studio Code
+- [Project Management](https://code.visualstudio.com/docs/java/java-project.md): Lightweight Mode, Maven Support, Java Package and Dependency Management in Visual Studio Code
+- [Build Tools](https://code.visualstudio.com/docs/java/java-build.md): Maven and Gradle support for Java in Visual Studio Code
+- [Run and Debug](https://code.visualstudio.com/docs/java/java-debugging.md): See how you can run and debug your Java source code locally, and in the cloud.
+- [Testing](https://code.visualstudio.com/docs/java/java-testing.md): See how you can test your Java code in Visual Studio Code.
+- [Spring Boot](https://code.visualstudio.com/docs/java/java-spring-boot.md): Spring Boot extensions for Java developer using Visual Studio Code editor.
+- [Modernizing Java Apps](https://code.visualstudio.com/docs/java/java-app-mod.md)
+- [Application Servers](https://code.visualstudio.com/docs/java/java-tomcat-jetty.md): Tomcat, Jetty and Open Liberty extensions for Java developer using Visual Studio Code.
+- [Deploy Java Apps](https://code.visualstudio.com/docs/java/java-on-azure.md): How to deploy Java applications to Azure with Visual Studio Code
+- [GUI Applications](https://code.visualstudio.com/docs/java/java-gui.md): How to develop Java GUI Applications (JavaFX, AWT, Swing) in Visual Studio Code
+- [Extensions](https://code.visualstudio.com/docs/java/extensions.md): Popular Java extensions for Visual Studio Code
+- [FAQ](https://code.visualstudio.com/docs/java/java-faq.md): Java on Visual Studio Code Frequent Asked Questions and Troubleshooting Guide
+
+### C++
+
+- [Intro Videos](https://code.visualstudio.com/docs/cpp/introvideos-cpp.md): Get started with C++ in Visual Studio Code by watching these introductory videos
+- [GCC on Linux](https://code.visualstudio.com/docs/cpp/config-linux.md): Configure the C++ extension in Visual Studio Code to target g++ and GDB on Linux
+- [GCC on Windows](https://code.visualstudio.com/docs/cpp/config-mingw.md): Configuring the C++ extension in Visual Studio Code to target g++ and gdb on a MinGW-w64 installation
+- [GCC on Windows Subsystem for Linux](https://code.visualstudio.com/docs/cpp/config-wsl.md): Configuring the C++ extension in Visual Studio Code to target g++ and GDB on WSL installation with Ubuntu
+- [Clang on macOS](https://code.visualstudio.com/docs/cpp/config-clang-mac.md): Configure the C++ extension in Visual Studio Code to target Clang/LLVM
+- [Microsoft C++ on Windows](https://code.visualstudio.com/docs/cpp/config-msvc.md): Configure the C++ extension in Visual Studio Code to target Microsoft C++ on Windows
+- [Build with CMake](https://code.visualstudio.com/docs/cpp/build-with-cmake.md): Learn how to use CMake with Visual Studio Code
+- [CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux.md): Get started with the CMake Tools Visual Studio Code extension on Linux
+- [CMake Quick Start](https://code.visualstudio.com/docs/cpp/cmake-quickstart.md): Create a Hello World project by using the CMake Quick Start in the CMake Tools Visual Studio Code extension
+- [C++ Dev Tools for Copilot](https://code.visualstudio.com/docs/cpp/cpp-devtools.md): Use C++ code understanding and CMake tools to provide Copilot with rich symbol context and knowledge of your build configurations.
+- [Editing and Navigating](https://code.visualstudio.com/docs/cpp/cpp-ide.md): How to edit and navigate C++ source files in Visual Studio Code.
+- [Debugging](https://code.visualstudio.com/docs/cpp/cpp-debug.md): How to debug C++ programs in Visual Studio Code.
+- [Configure Debugging](https://code.visualstudio.com/docs/cpp/launch-json-reference.md): Configure launch.json for C/C++ debugging in Visual Studio Code
+- [Refactoring](https://code.visualstudio.com/docs/cpp/cpp-refactoring.md): How to refactor C++ source files in Visual Studio Code.
+- [Settings Reference](https://code.visualstudio.com/docs/cpp/customize-cpp-settings.md): How to customize the c_cpp_properties.json file for the C++ extension.
+- [Configure IntelliSense](https://code.visualstudio.com/docs/cpp/configure-intellisense.md): Configure Visual Studio Code IntelliSense in the C/C++ extension
+- [Configure IntelliSense for Cross-Compiling](https://code.visualstudio.com/docs/cpp/configure-intellisense-crosscompilation.md): Configure Visual Studio Code c_cpp_properties.json to get IntelliSense when you are compiling for a different platform
+- [FAQ](https://code.visualstudio.com/docs/cpp/faq-cpp.md): Frequently asked questions about the C/C++ extension in Visual Studio Code.
+
+### C#
+
+- [Intro Videos](https://code.visualstudio.com/docs/csharp/introvideos-csharp.md): Get started with C# in Visual Studio Code by watching these introductory videos
+- [Get Started](https://code.visualstudio.com/docs/csharp/get-started.md): Getting Started with C# and .NET Development in Visual Studio Code
+- [Navigate and Edit](https://code.visualstudio.com/docs/csharp/navigate-edit.md): C# language features such as Go to Definition and Smart selection in Visual Studio Code
+- [IntelliCode](https://code.visualstudio.com/docs/csharp/intellicode.md): IntelliCode for C# in Visual Studio Code
+- [Refactoring](https://code.visualstudio.com/docs/csharp/refactoring.md): C# Quick Actions and Refactorings in Visual Studio Code
+- [Formatting and Linting](https://code.visualstudio.com/docs/csharp/formatting-linting.md): Formatting and linting C# source code in Visual Studio Code
+- [Project Management](https://code.visualstudio.com/docs/csharp/project-management.md): Manage C# projects in Visual Studio Code
+- [Build Tools](https://code.visualstudio.com/docs/csharp/build-tools.md): C# Build Tools for Visual Studio
+- [Package Management](https://code.visualstudio.com/docs/csharp/package-management.md): C# package management with NuGet in Visual Studio Code
+- [Run and Debug](https://code.visualstudio.com/docs/csharp/debugging.md): See how you can run and debug your C# source code
+- [Testing](https://code.visualstudio.com/docs/csharp/testing.md): Testing C# with C# Dev Kit in Visual Studio Code
+- [FAQ](https://code.visualstudio.com/docs/csharp/cs-dev-kit-faq.md): C# Dev Kit extension Frequently Asked Questions (FAQ)
+
+## Extension API
+
+### Get Started
+
+- [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension.md): Create your first Visual Studio Code extension (plug-in) with a simple Hello World example.
+- [Extension Anatomy](https://code.visualstudio.com/api/get-started/extension-anatomy.md): Explain the structure of a Visual Studio Code extension (plug-in)
+- [Wrapping Up](https://code.visualstudio.com/api/get-started/wrapping-up.md): Next steps to take after studying the Getting Started section
+
+### Extension Capabilities
+
+- [Overview](https://code.visualstudio.com/api/extension-capabilities/overview.md): Learn the details of what's possible with Visual Studio Code's rich extension (plug-in) API.
+- [Common Capabilities](https://code.visualstudio.com/api/extension-capabilities/common-capabilities.md): Common capabilities that Visual Studio Code extensions (plug-ins) can take advantage of
+- [Theming](https://code.visualstudio.com/api/extension-capabilities/theming.md): Learn how to add custom themes for colors and icons in Visual Studio Code.
+- [Extending Workbench](https://code.visualstudio.com/api/extension-capabilities/extending-workbench.md): Explain how to extend Visual Studio Code's workbench area with custom UI components
+
+### Extension Guides
+
+- [Overview](https://code.visualstudio.com/api/extension-guides/overview.md): Learn from Visual Studio Code extension guides and code samples
+- [AI Extensibility](https://code.visualstudio.com/api/extension-guides/ai/ai-extensibility-overview.md): Extend AI workflows with plugins, MCP Apps, and tools, or integrate models into VS Code extensions.
+- [Language Model Tool](https://code.visualstudio.com/api/extension-guides/ai/tools.md): A guide to creating a language model tool and how to implement tool calling in a chat extension
+- [MCP Dev Guide](https://code.visualstudio.com/api/extension-guides/ai/mcp.md): A comprehensive guide for developers building MCP servers that work with Visual Studio Code.
+- [Chat Participants (Deprecated)](https://code.visualstudio.com/api/extension-guides/ai/chat.md): Replace deprecated chat participants with agent plugins, MCP tools and Apps, or editor-specific extension tools.
+- [Code-Tutor Migration](https://code.visualstudio.com/api/extension-guides/ai/chat-tutorial.md): Migrate a code-tutor chat participant to an agent plugin with skills, MCP tools, and interactive exercises.
+- [Language Model](https://code.visualstudio.com/api/extension-guides/ai/language-model.md): A guide to adding AI-powered features to a VS Code extension by using language models and natural language understanding.
+- [Language Model Tutorial](https://code.visualstudio.com/api/extension-guides/ai/language-model-tutorial.md): Tutorial that walks you through creating a VS Code extension that uses the Language Model API to generate AI-powered code annotations.
+- [Language Model Chat Provider](https://code.visualstudio.com/api/extension-guides/ai/language-model-chat-provider.md): Learn how to implement a LanguageModelChatProvider to contribute custom language models to VS Code's chat experience for extensions.
+- [Prompt TSX](https://code.visualstudio.com/api/extension-guides/ai/prompt-tsx.md): A guide for how to build language model prompts using the prompt-tsx library
+- [Command](https://code.visualstudio.com/api/extension-guides/command.md): A guide to using commands programmatically in Visual Studio Code extensions (plug-ins)
+- [Color Theme](https://code.visualstudio.com/api/extension-guides/color-theme.md): A guide to creating Color Theme in Visual Studio Code
+- [File Icon Theme](https://code.visualstudio.com/api/extension-guides/file-icon-theme.md): A guide to creating a File Icon Theme in Visual Studio Code
+- [Product Icon Theme](https://code.visualstudio.com/api/extension-guides/product-icon-theme.md): A guide to creating Product Icon Theme in Visual Studio Code
+- [Tree View](https://code.visualstudio.com/api/extension-guides/tree-view.md): A guide to using Tree View in Visual Studio Code extension (plug-in).
+- [Webview](https://code.visualstudio.com/api/extension-guides/webview.md): Use the Webview API to create fully customizable views within Visual Studio Code.
+- [Notebook](https://code.visualstudio.com/api/extension-guides/notebook.md): Use the Notebook API to create rich Notebook experiences within Visual Studio Code.
+- [Custom Editors](https://code.visualstudio.com/api/extension-guides/custom-editors.md): Use the Custom Editor API to create customizable editors within Visual Studio Code.
+- [Virtual Documents](https://code.visualstudio.com/api/extension-guides/virtual-documents.md): A guide to using Virtual Documents in Visual Studio Code extensions (plug-ins)
+- [Virtual Workspaces](https://code.visualstudio.com/api/extension-guides/virtual-workspaces.md): Learn how to support virtual workspaces in extensions
+- [Web Extensions](https://code.visualstudio.com/api/extension-guides/web-extensions.md): Learn how to run extensions in Visual Studio Code for the web and the web extension host.
+- [Workspace Trust](https://code.visualstudio.com/api/extension-guides/workspace-trust.md): A guide for updating Visual Studio Code extensions to support Workspace Trust
+- [Task Provider](https://code.visualstudio.com/api/extension-guides/task-provider.md): Learn how to contribute tasks to Visual Studio Code through an extension (plug-in).
+- [Source Control](https://code.visualstudio.com/api/extension-guides/scm-provider.md): A guide illustrating how to use Source Control API.
+- [Debugger Extension](https://code.visualstudio.com/api/extension-guides/debugger-extension.md): Learn how to provide debugger extensions (plug-ins) for Visual Studio Code through a Debug Adapter.
+- [Markdown Extension](https://code.visualstudio.com/api/extension-guides/markdown-extension.md): Extend Visual Studio Code Markdown features with preview styles, scripts, markdown-it plugins, and interactive code block editors.
+- [Test Extension](https://code.visualstudio.com/api/extension-guides/testing.md): Testing APIs in VS Code allow users to discover and run unit tests in their workspace
+- [Custom Data Extension](https://code.visualstudio.com/api/extension-guides/custom-data-extension.md): Learn how to extend Visual Studio Code's HTML and CSS language support.
+- [Telemetry](https://code.visualstudio.com/api/extension-guides/telemetry.md): Learn how Visual Studio Code extensions can enable telemetry and respect user telemetry choices.
+
+### UX Guidelines
+
+- [Overview](https://code.visualstudio.com/api/ux-guidelines/overview.md): Guidelines that showcase best practices for creating Visual Studio Code extensions.
+- [Activity Bar](https://code.visualstudio.com/api/ux-guidelines/activity-bar.md): UX guidelines for the Activity Bar in a Visual Studio Code extension.
+- [Sidebars](https://code.visualstudio.com/api/ux-guidelines/sidebars.md): UX guidelines for the Side Bar in a Visual Studio Code extension.
+- [Panel](https://code.visualstudio.com/api/ux-guidelines/panel.md): UX guidelines for the Panel Bar in a Visual Studio Code extension.
+- [Status Bar](https://code.visualstudio.com/api/ux-guidelines/status-bar.md): UX guidelines for status bar and status bar items in a Visual Studio Code extension.
+- [Views](https://code.visualstudio.com/api/ux-guidelines/views.md): UX guidelines for views in a Visual Studio Code extension.
+- [Editor Actions](https://code.visualstudio.com/api/ux-guidelines/editor-actions.md): UX guidelines for editor actions in a Visual Studio Code extension.
+- [Quick Picks](https://code.visualstudio.com/api/ux-guidelines/quick-picks.md): UX guidelines for quick picks used in a Visual Studio Code extension.
+- [Command Palette](https://code.visualstudio.com/api/ux-guidelines/command-palette.md): UX guidelines for the Command Palette in a Visual Studio Code extension.
+- [Notifications](https://code.visualstudio.com/api/ux-guidelines/notifications.md): UX guidelines for notifications in a Visual Studio Code extension.
+- [Webviews](https://code.visualstudio.com/api/ux-guidelines/webviews.md): UX guidelines for webviews in a Visual Studio Code extension.
+- [Context Menus](https://code.visualstudio.com/api/ux-guidelines/context-menus.md): UX guidelines for using context menus in a Visual Studio Code extension.
+- [Walkthroughs](https://code.visualstudio.com/api/ux-guidelines/walkthroughs.md): UX guidelines for walkthroughs in a Visual Studio Code extension.
+- [Settings](https://code.visualstudio.com/api/ux-guidelines/settings.md): UX guidelines for settings contributed by a Visual Studio Code extension.
+
+### Language Extensions
+
+- [Overview](https://code.visualstudio.com/api/language-extensions/overview.md): Learn how to write a Language Extension (plug-in) to add support for a programming language in Visual Studio Code.
+- [Syntax Highlight Guide](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide.md): A guide to syntax highlighting
+- [Semantic Highlight Guide](https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide.md): A guide to syntax highlighting
+- [Snippet Guide](https://code.visualstudio.com/api/language-extensions/snippet-guide.md): Learn how to bundle snippets into an extension (plug-in) for Visual Studio Code
+- [Language Configuration Guide](https://code.visualstudio.com/api/language-extensions/language-configuration-guide.md): A guide to configure language support for any language in Visual Studio Code.
+- [Programmatic Language Features](https://code.visualstudio.com/api/language-extensions/programmatic-language-features.md): Visual Studio Code language extensions contribute programming language features. These guidelines present the language features available in Visual Studio Code and explain the API.
+- [Language Server Extension Guide](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide.md): Learn how to create Language Servers to provide rich language features in Visual Studio Code.
+- [Embedded Languages](https://code.visualstudio.com/api/language-extensions/embedded-languages.md): Learn how to create Language Servers to provide rich language features for embedded programming languages in Visual Studio Code.
+
+### Testing and Publishing
+
+- [Testing Extensions](https://code.visualstudio.com/api/working-with-extensions/testing-extension.md): Write tests for your Visual Studio Code extension (plug-in).
+- [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension.md): Learn how to publish Visual Studio Code extensions to the public Marketplace and share them with other developers.
+- [Bundling Extensions](https://code.visualstudio.com/api/working-with-extensions/bundling-extension.md): Bundling Visual Studio Code extensions (plug-ins) with webpack.
+- [Continuous Integration](https://code.visualstudio.com/api/working-with-extensions/continuous-integration.md): Use Continuous Integration for testing Visual Studio Code extensions (plug-ins).
+
+### Advanced Topics
+
+- [Extension Host](https://code.visualstudio.com/api/advanced-topics/extension-host.md): The Visual Studio Code Extension Host is responsible for managing extensions and ensuring the stability and performance of Visual Studio Code.
+- [Remote Development and Codespaces](https://code.visualstudio.com/api/advanced-topics/remote-extensions.md): A guide to adding Visual Studio Code Remote Development and GitHub Codespaces support to extensions
+- [Using Proposed API](https://code.visualstudio.com/api/advanced-topics/using-proposed-api.md): Use Visual Studio Code's Proposed API
+- [Migrate from TSLint to ESLint](https://code.visualstudio.com/api/advanced-topics/tslint-eslint-migration.md): A guide to migrating extension projects from the TSLint linter to ESLint.
+- [Python Extension Template](https://code.visualstudio.com/api/advanced-topics/python-extension-template.md): Using the Python extension template and API to integrate linters, formatters, and language features into Visual Studio Code
+
+### References
+
+- [VS Code API](https://code.visualstudio.com/api/references/vscode-api.md): Visual Studio Code extensions (plug-in) API Reference.
+- [Contribution Points](https://code.visualstudio.com/api/references/contribution-points.md): To extend Visual Studio Code, your extension (plug-in) declares which of the various Contribution Points it is using in its package.json Extension Manifest file.
+- [Activation Events](https://code.visualstudio.com/api/references/activation-events.md): To support lazy activation of Visual Studio Code extensions (plug-ins), your extension controls when it should be loaded through a set of Activation Events.
+- [Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest.md): At the core of Visual Studio Code's extensibility model is an extension (plug-in) manifest file where your extension declares its extension type(s), activation rules, and runtime resources.
+- [Built-In Commands](https://code.visualstudio.com/api/references/commands.md): Visual Studio Code built-in commands reference.
+- [When Clause Contexts](https://code.visualstudio.com/api/references/when-clause-contexts.md): Use when-clause contexts in VS Code to control keybindings, commands, menus, and views.
+- [Theme Color](https://code.visualstudio.com/api/references/theme-color.md): Theme Color reference that lists all themable colors in Visual Studio Code.
+- [Product Icon Reference](https://code.visualstudio.com/api/references/icons-in-labels.md): Reference of all product icons by id
+- [Document Selector](https://code.visualstudio.com/api/references/document-selector.md): Visual Studio Code extensions can filter their features based on Document Selectors by language, file type, and location.
+
+## Learn
+
+### Agent Foundations
+
+- [Introduction to agent-first development](https://code.visualstudio.com/learn/foundations/introduction-to-agent-first-development.md): Learn how harness, model, context, tools, and prompt work together for effective agent-first development in VS Code.
+- [Your first agent session](https://code.visualstudio.com/learn/foundations/approvals-autonomy-and-context-budget.md): Manage approvals, autonomy, and context budget for coding agents in VS Code, including scoped approvals and compaction.
+- [Reviewing and controlling agent changes](https://code.visualstudio.com/learn/foundations/reviewing-and-controlling-agent-changes.md): Review AI-generated changes in VS Code with diff controls, checkpoints, forks, and session steering for safe agent workflows.
+- [Agent sessions and where agents run](https://code.visualstudio.com/learn/foundations/agent-sessions-and-where-agents-run.md): Manage agent sessions in VS Code across local, Copilot, and cloud execution modes, and choose the right session target.
+- [Debugging agent work](https://code.visualstudio.com/learn/foundations/debugging-and-whats-happening-behind-the-scenes.md): Diagnose agent behavior in VS Code with Agent Debug Logs, Chat Debug view, debug event snapshots, and troubleshooting.
+- [Build your first app with agent mode](https://code.visualstudio.com/learn/foundations/build-your-first-app-with-agent-mode.md): Build a URL shortener with agent mode in VS Code using FastAPI, sqlite3, planning, autopilot, review tools, and forking.
+
+### Agent Customizations
+
+- [Why customization matters](https://code.visualstudio.com/learn/customizations/1-why-customization-matter.md): Learn why GitHub Copilot agent customization in VS Code matters, and how to get started with the Agent Customizations view for more consistent AI results.
+- [Instructions](https://code.visualstudio.com/learn/customizations/2-instructions.md): Learn how to create and use custom instructions in VS Code to guide GitHub Copilot behavior, enforce coding standards, and get consistent chat results.
+- [Skills](https://code.visualstudio.com/learn/customizations/3-skills.md): Learn how to create and use agent skills in VS Code to automate workflows, extend GitHub Copilot capabilities, and reduce repetitive tasks.
+- [Custom agent](https://code.visualstudio.com/learn/customizations/4-custom-agent.md): Learn how to create and use custom agents with GitHub Copilot to define AI roles, maintain consistency, and build specialized workflows in VS Code.
+- [Hooks](https://code.visualstudio.com/learn/customizations/5-hooks.md): Learn how to use hooks in VS Code to automate workflows, enforce standards, and trigger actions based on lifecycle events in GitHub Copilot.
+- [Prompt files](https://code.visualstudio.com/learn/customizations/6-prompt-files.md): Learn how to create and use reusable prompt files in VS Code to standardize workflows, reduce repetition, and customize GitHub Copilot behavior.
+- [Customization Features Explained](https://code.visualstudio.com/learn/customizations/7-customization-features-explained.md): Understand the differences between custom instructions, agent skills, hooks, custom agents, and prompt files in GitHub Copilot using interactive learning with Copilot.
+- [Customization Features In Practice](https://code.visualstudio.com/learn/customizations/8-demo.md): "A hands-on demo of GitHub Copilot customization features: custom agents, skills, instructions, prompt files, and hooks working together in a real project."
+
+### Agent Extensions
+
+- [Using tools with agents](https://code.visualstudio.com/learn/agents/1-using-tools-with-agents.md): Practice choosing agent tools, tool sets, approvals, and sandboxing settings for focused AI workflows in VS Code.
+- [Extending agents with MCP servers](https://code.visualstudio.com/learn/agents/2-extending-agents-with-mcp-servers.md): Install, use, configure, and sandbox an MCP server to give VS Code agents focused external capabilities.
+- [Agent plugins](https://code.visualstudio.com/learn/agents/3-agent-plugins.md): Practice installing, reviewing, using, and recommending agent plugins for repeatable AI workflows in VS Code.
+- [Using third-party agents in VS Code](https://code.visualstudio.com/learn/agents/4-using-third-party-agents-in-vs-code.md): Start Claude and Codex agent sessions in VS Code and choose local or cloud workflows for coding tasks.
+
+### Build your own Agent
+
+- [Getting started with Foundry Toolkit in Visual Studio Code](https://code.visualstudio.com/learn/foundry-toolkit-extension/1-get-started.md): Get started with Foundry Toolkit in Visual Studio Code, connect your project resources, and prepare for model and agent workflows.
+- [Exploring models with Model Catalog](https://code.visualstudio.com/learn/foundry-toolkit-extension/2-exploring-models.md): Learn how to shortlist, filter, deploy, and compare models in Model Catalog using Foundry Toolkit and GitHub Copilot.
+- [Building a social media content agent with Agent Builder](https://code.visualstudio.com/learn/foundry-toolkit-extension/3-building-social-media-agent.md): Build a social media content agent with Agent Builder, connect MCP tools, and improve quality with structured evaluations.
+- [Building a hosted agent with GitHub Copilot and Microsoft Foundry](https://code.visualstudio.com/learn/foundry-toolkit-extension/4-building-hosted-agent.md): Scaffold, debug, and deploy a hosted agent with GitHub Copilot CLI, Agent Inspector, and Microsoft Foundry.
+
+### Java, Spring Boot, and GitHub Copilot
+
+- [Build and Run Your First Spring Boot App](https://code.visualstudio.com/learn/java-spring-boot/1-build-and-run.md): Build and run a Spring Boot application in Visual Studio Code with Java extensions, Maven, and the Spring Boot Dashboard.
+- [Debug and Inspect a Spring Boot Request](https://code.visualstudio.com/learn/java-spring-boot/2-debug-and-inspect.md): Debug a Spring Boot request and inspect application health and memory with Java tools in Visual Studio Code.
+- [Expose Your Java Operations to GitHub Copilot with MCP](https://code.visualstudio.com/learn/java-spring-boot/3-expose-tools-with-mcp.md): Expose Spring Boot operations as MCP tools and call them from GitHub Copilot in Visual Studio Code.
+- [Let GitHub Copilot Test Your Spring Boot App with Playwright](https://code.visualstudio.com/learn/java-spring-boot/4-test-with-playwright.md): Use GitHub Copilot and Playwright MCP tools to test a Spring Boot web application in Visual Studio Code.
